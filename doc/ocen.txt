@@ -16,9 +16,9 @@ configure its default behavior.
 The following options are set by default, in accordance with the official ocen
 style guide: >
 	setlocal noexpandtab
-	setlocal shiftwidth=8
-	setlocal softtabstop=8
-	setlocal tabstop=8
+	setlocal shiftwidth=4
+	setlocal softtabstop=0
+	setlocal tabstop=4
 	setlocal textwidth=80
 <
 To disable this behavior: >

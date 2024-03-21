@@ -11,11 +11,14 @@ syn case match
 
 "syn match Repeat        
 syn match PreProc        '[><]'
-syn match Exception      '[\&|\^]\|>>\|<<\|*'
-syn match Operator       '[,\+\-\%;=\/]\|\^\^\|*\s\|*='
+syn match Exception      '[\&|\^\*]'
+syn match Exception      '\w\s*\zs>>\ze\s*\w\|\w\s*\zs<<\ze\s*\w'
+syn match Operator       '=>\|[,\+\-\%;=\/]\|\^\^\|*\s\|*='
 syn match SpecialComment '[`:\.]'
 syn match Constant       '[{}\[\]()]'
 syn match PreProc        '&&\|||\|!=\|==\|!\|>=\|<='
+
+syn keyword PreProc or and not
 
 " KEYWORDS {{{2
 syn keyword ocenCast as is
@@ -26,7 +29,7 @@ syn keyword ocenKeyword const def let
 syn keyword ocenLabel case
 syn keyword ocenRepeat for while
 syn keyword ocenStorageClass export static
-syn keyword ocenStructure enum struct union
+syn keyword ocenStructure enum struct union namespace typedef
 "syn keyword ocenTypedef type
 
 " Attributes
@@ -40,8 +43,8 @@ syn keyword ocenBuiltin align len offset
 syn keyword ocenBuiltin alloc free calloc malloc
 syn keyword ocenBuiltin append insert delete
 
-" C ABI
-"syn keyword ocenBuiltin vastart vaarg vaend
+" C compiler
+syn keyword Repeat c_include c_flag c_embed
 
 " TYPES {{{2
 syn keyword ocenType bool
@@ -54,8 +57,8 @@ syn keyword ocenType void
 " `size` can either be a builtin or a type. Match it as a type by default,
 " unless the next non-comment token is an open paren, in which case prioritize
 " matching it as a builtin.
-syn match ocenType '\v<size>' display
-syn match ocenBuiltin '\v<size>\ze(\_s*|//.*\_$)*\(' display
+"syn match ocenType '\v<size>' display
+"syn match ocenBuiltin '\v<size>\ze(\_s*|//.*\_$)*\(' display
 
 " LITERALS {{{2
 syn keyword ocenBoolean true false
@@ -105,8 +108,9 @@ syn match ocenErrorPropagation '?' display
 syn match ocenSpaceError '\v\s+$' display
 syn match ocenSpaceError '\v\zs +\ze\t' display
 
-" Use statement
-syn region ocenUse start='\v^\s*\zsuse>' end=';' contains=ocenComment display
+" Import statement
+syn region ocenImport start='\v^\s*\zsimport>' end='$' contains=ocenComment display
+syn region ocenImport start='\v^\s*\zsimport .*\{' end='\}' contains=ocenComment display
 
 " DEFAULT HIGHLIGHTING {{{1
 hi def link ocenAttribute PreProc
@@ -129,9 +133,9 @@ hi def link ocenStorageClass StorageClass
 hi def link ocenString String
 hi def link ocenStructure Structure
 hi def link ocenTodo Todo
-hi def link ocenType Type
-hi def link ocenTypedef Typedef
-hi def link ocenUse Include
+"hi def link ocenType Type
+"hi def link ocenTypedef Typedef
+hi def link ocenImport Include
 
 " Default highlighting for error propagation operators
 hi def ocenErrorAssertion ctermfg=red cterm=bold guifg=red gui=bold
@@ -139,5 +143,20 @@ hi def ocenErrorPropagation ctermfg=red cterm=bold guifg=red gui=bold
 
 " Highlight invalid attributes.
 hi def link ocenAttributeError Error
+
+" ---
+hi def link ocenFunc Function
+hi def link ocenTypedef Identifier
+hi def ocenType ctermfg=DarkCyan guifg=DarkCyan
+hi def ocenThis ctermfg=DarkMagenta guifg=DarkMagenta
+syn match ocenThis '\(\w\)\@<!this\(\w\)\@!'
+syn match ocenTypedef  contains=ocenTypedef "\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*" display contained
+syn match ocenFunc    "\%(r#\)\=\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*" display contained
+"syn keyword Keyword   def nextgroup=Function skipwhite skipempty
+syn keyword ocenKeyword union struct enum namespace typedef nextgroup=ocenTypedef skipwhite skipempty
+syn keyword ocenKeyword union nextgroup=ocenType skipwhite skipempty contained
+syn match ocenFunc    "\w\(\w\)*("he=e-1,me=e-1
+syn match ocenFunc    "\w\(\w\)*<"he=e-1,me=e-1 " foo<T>();
+syn match ocenType    "\w\(\w\)*::[^<]"he=e-3,me=e-3
 
 " vim: et sw=2 sts=2 ts=8

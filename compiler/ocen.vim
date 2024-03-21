@@ -13,7 +13,7 @@ endif
 if filereadable("Makefile") || filereadable("makefile")
   CompilerSet makeprg=make
 else
-  CompilerSet makeprg=ocen
+  CompilerSet makeprg=ocen\ %:p\ -o\ %:t:r
 endif
 
 CompilerSet errorformat=

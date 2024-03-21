@@ -53,9 +53,17 @@ function! GetocenIndent()
     return indent(prevlnum) + shiftwidth()
   endif
 
+  if line =~# '{\s*$'
+    return FloorCindent(v:lnum)
+  endif
+
+  if prevline =~# '[^\{]\s*$' && prevline !~# 'for\|while\|if\|else'
+    return indent(prevlnum)
+  endif
+
   " If the previous line ended in a semicolon and the line before that ended
   " with =, deindent by one shiftwidth.
-  if prevline =~# '\v;\s*(//.*)?$' && prevprevline =~# '\v\=\s*(//.*)?$'
+  if prevline =~# '\v$\s*(//.*)?$' && prevprevline =~# '\v\=\s*(//.*)?$'
     return indent(prevlnum) - shiftwidth()
   endif
 
