@@ -6,19 +6,16 @@ if exists('b:current_syntax')
 endif
 let b:current_syntax = 'ocen'
 
-" SYNTAX {{{1
-syn case match
-
-"syn match Repeat        
-syn match PreProc        '[><]'
-syn match Exception      '[\&|\^\*]'
-syn match Exception      '\w\s*\zs>>\ze\s*\w\|\w\s*\zs<<\ze\s*\w'
-syn match Operator       '=>\|[,\+\-\%;=\/]\|\^\^\|*\s\|*='
+syn keyword PreProc or and not
+syn match PreProc        '[@]'
+syn match ocenSymbol     '[,;]'
+syn match Operator       '[\+\-\%=\/\^\&\*!?><\$|]'
 syn match SpecialComment '[`:\.]'
 syn match Constant       '[{}\[\]()]'
-syn match PreProc        '&&\|||\|!=\|==\|!\|>=\|<='
+hi def ocenSymbol ctermfg=DarkGray guifg=DarkGray
 
-syn keyword PreProc or and not
+" SYNTAX {{{1
+syn case match
 
 " KEYWORDS {{{2
 syn keyword ocenCast as is
@@ -28,7 +25,7 @@ syn keyword ocenKeyword const def let
 "syn keyword ocenKeyword fn
 syn keyword ocenLabel case
 syn keyword ocenRepeat for while
-syn keyword ocenStorageClass export static
+"syn keyword ocenStorageClass export static
 syn keyword ocenStructure enum struct union namespace typedef
 "syn keyword ocenTypedef type
 
@@ -58,14 +55,15 @@ syn keyword ocenType void
 " unless the next non-comment token is an open paren, in which case prioritize
 " matching it as a builtin.
 "syn match ocenType '\v<size>' display
-"syn match ocenBuiltin '\v<size>\ze(\_s*|//.*\_$)*\(' display
+"syn match ocenBuiltin '\v<size>\ze(\s*|//.*\_$)*\(' display
 
 " LITERALS {{{2
 syn keyword ocenBoolean true false
 syn keyword ocenNull null
 
 " Floating-point number literals
-syn match ocenFloat '\v<(0|[1-9]\d*)\.\d+([eE][+-]?\d+)?(f32|f64)?>' display
+"syn match ocenFloat '\v<(0|[1-9]\d*)\.\d+([eE][+-]?\d+)?(f32|f64)?>' display
+syn match ocenFloat '\v<\.?\d+([eE][+-]?\d+)?(f32|f64)?>' display
 syn match ocenFloat '\v<(0|[1-9]\d*)([eE][+-]?\d+)?(f32|f64)>' display
 syn match ocenFloat '\v<0x\x+(\.\x+)?[pP][+-]?\d+(f32|f64)?>' display
 
@@ -101,7 +99,7 @@ syn match ocenCommentRef '\v\[\[\h\w*(::\h\w*)*(::)?]]' contained display
 " Match `!` as an error assertion operator only if the previous non-comment
 " token is a closing paren, `!` or `?`, or a valid identifier followed by an
 " optional tuple field access. Do not include `!=` in the matches.
-syn match ocenErrorAssertion '\v((\h\w*(\.\d+)*|[!?]|\))(\_s*|//.*\_$)*)@<=!\=@!' display
+syn match ocenErrorAssertion '\v((\h\w*(\.\d+)*|[!?]|\))(\s*|//.*\_$)*)@<=!\=@!' display
 syn match ocenErrorPropagation '?' display
 
 " Incorrect whitespace
@@ -121,7 +119,7 @@ hi def link ocenComment Comment
 hi def link ocenCommentRef SpecialComment
 hi def link ocenConditional Conditional
 hi def link ocenEscape SpecialChar
-hi def link ocenFloat Float
+hi def link ocenFloat Number
 hi def link ocenFormat SpecialChar
 hi def link ocenInteger Number
 hi def link ocenKeyword Keyword
@@ -149,14 +147,20 @@ hi def link ocenFunc Function
 hi def link ocenTypedef Identifier
 hi def ocenType ctermfg=DarkCyan guifg=DarkCyan
 hi def ocenThis ctermfg=DarkMagenta guifg=DarkMagenta
+syn match ocenAttribute '\(^\s*\[\s*\)\@<=\w\w*\ze\s*.*\]'
+syn match Repeat   "\([^\.]\.\)\@<=\w\w*\(\(\[.*\]\)*\s*(\)\@!"
+syn match ocenFloat "\([0-9]\+\.\)\@<=[0-9][0-9]*\(f32\|f64\)*"
 syn match ocenThis '\(\w\)\@<!this\(\w\)\@!'
+syn match ocenType '\(\sas\s\+\W*\)\@<=\w\+'
+syn match ocenType '\(\(\W\|^\)\(let\|const\|def\)\s\+[^=]*\w\s*)*\s*:\s*\W*\|^\W*\w\w*\s*:\W*\)\@<=\w\+'
 syn match ocenTypedef  contains=ocenTypedef "\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*" display contained
 syn match ocenFunc    "\%(r#\)\=\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*" display contained
 "syn keyword Keyword   def nextgroup=Function skipwhite skipempty
 syn keyword ocenKeyword union struct enum namespace typedef nextgroup=ocenTypedef skipwhite skipempty
 syn keyword ocenKeyword union nextgroup=ocenType skipwhite skipempty contained
-syn match ocenFunc    "\w\(\w\)*("he=e-1,me=e-1
-syn match ocenFunc    "\w\(\w\)*<"he=e-1,me=e-1 " foo<T>();
-syn match ocenType    "\w\(\w\)*::[^<]"he=e-3,me=e-3
+syn match ocenFunc   "[0-9a-zA-Z_@]*\w\w*\(\(<.*>\s*\)*\(\[.*\]\)*\s*(\)\@="
+"syn match ocenFunc    "\w\(\w\)*\ze\(\[.*\]\s*\)*\s*("
+"syn match ocenFunc    "\w\(\w\)*<"he=e-1,me=e-1 " foo<T>();
+syn match ocenType    "\w\(\w\)*\ze\(<.*>\s*\)*::[^<]"
 
 " vim: et sw=2 sts=2 ts=8

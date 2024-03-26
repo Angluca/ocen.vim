@@ -54,7 +54,12 @@ function! GetocenIndent()
   endif
 
   if line =~# '{\s*$'
-    return FloorCindent(v:lnum)
+    "return FloorCindent(v:lnum)
+    return indent(prevlnum)
+  endif
+
+  if prevline =~# 'if\s.*\sthen\s[^{]\+$'
+    return indent(prevlnum)
   endif
 
   if prevline =~# '[^\{]\s*$' && prevline !~# 'for\|while\|if\|else'
