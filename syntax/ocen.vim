@@ -152,7 +152,7 @@ syn match Repeat   "\([^\.]\.\)\@<=\w\w*\(\(\[.*\]\)*\s*(\)\@!"
 syn match ocenFloat "\([0-9]\+\.\)\@<=[0-9][0-9]*\(f32\|f64\)*"
 syn match ocenThis '\(\w\)\@<!this\(\w\)\@!'
 syn match ocenType '\(\sas\s\+\W*\)\@<=\w\+'
-syn match ocenType '\(\(\W\|^\)\(let\|const\|def\)\s\+[^=]*\w\s*)*\s*:\s*\W*\|^\W*\w\w*\s*:\W*\)\@<=\w\+'
+syn match ocenType '\(\(\W\|^\)\(let\|const\|def\)\s\+[^=]*\w\s*)*\s*:\s*\W*\|^\W*\w\w*\s*:\w*\)\@<=\w\+'
 syn match ocenTypedef  contains=ocenTypedef "\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*" display contained
 syn match ocenFunc    "\%(r#\)\=\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*" display contained
 "syn keyword Keyword   def nextgroup=Function skipwhite skipempty
