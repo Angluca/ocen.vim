@@ -18,7 +18,7 @@ hi def ocenSymbol ctermfg=DarkGray guifg=DarkGray
 syn case match
 
 " KEYWORDS {{{2
-syn keyword ocenCast as is
+syn keyword ocenCast as is in
 syn keyword ocenConditional if then else match switch
 syn keyword ocenKeyword break continue defer return yield
 syn keyword ocenKeyword const def let

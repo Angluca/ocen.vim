@@ -21,12 +21,24 @@ let b:undo_ftplugin = 'setl cms< com< fo< isk< sua<'
 
 " Follow the ocen style guide by default.
 if get(g:, 'ocen_recommended_style', 1)
-  setlocal noexpandtab
+  setlocal expandtab
   setlocal shiftwidth=4
-  setlocal softtabstop=0
+  setlocal softtabstop=4
   setlocal tabstop=4
   setlocal textwidth=80
   let b:undo_ftplugin .= ' et< sts< sw< ts< tw<'
+endif
+
+fu! DeleteTrailingWS()
+    exe "normal mz"
+    %s/\s\+\r\?$//ge
+    nohl
+    exe "normal `z"
+endf
+
+" Auto delete trailing white_space if save.
+if get(g:, 'ocen_save_cls', 1)
+  au BufWrite *.oc call DeleteTrailingWS()
 endif
 
 augroup ocen.vim
