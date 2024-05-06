@@ -14,17 +14,33 @@ syn match SpecialComment '[`:\.]'
 syn match Constant       '[{}\[\]()]'
 hi def ocenSymbol ctermfg=DarkGray guifg=DarkGray
 
+hi def link ocenFunc Function
+hi def link ocenTypedef Identifier
+hi def ocenType ctermfg=DarkCyan guifg=DarkCyan
+hi def ocenThis ctermfg=DarkMagenta guifg=DarkMagenta
+syn match ocenAttribute '\(^\s*\[\s*\)\@<=\w\w*\ze\s*.*\]'
+syn match Repeat   "\([^\.]\.\)\@<=\w\w*\(\(\[.*\]\)*\s*(\)\@!"
+"syn match ocenFloat "\([0-9]\+\.\)\@<=[0-9][0-9]*\(f32\|f64\)*"
+syn match ocenThis '\(\w\)\@<!this\(\w\)\@!'
+"syn match ocenType '\(\sas\s\+\W*\)\@<=\w\+'
+syn match ocenType    "\w\(\w\)*\ze\(<.*>\s*\)*::[^<]"
+"syn match ocenFunc    "\w\(\w\)*\ze\(\[.*\]\s*\)*\s*("
+"syn match ocenFunc    "\w\(\w\)*<"he=e-1,me=e-1 " foo<T>();
+"syn match ocenType ')*\s*\(:\s*\(\(\(\[.*\]\)\|\({.*}\)\|\(\w\+\)\|\(\*\|?\|!\|&\)\)\s*\)*\)\@<=\w\w*'
+syn match ocenType '\(\(\(\W\|^\)\(let\|const\|def\)\s\+[^=]*\w\s*)*\s*:\s*\W*\)\|\(^\W*\w\w*\s*:\s*\w*\)\)\@<=\w\+'
+syn match ocenFunc   "[0-9a-zA-Z_@]\w*\(\(<.*>\s*\)*\(\[.*\]\)*\s*(\)\@="
+
 " SYNTAX {{{1
 syn case match
 
 " KEYWORDS {{{2
-syn keyword ocenCast as is in
+syn keyword ocenCast as is
 syn keyword ocenConditional if then else match switch
 syn keyword ocenKeyword break continue defer return yield
 syn keyword ocenKeyword const def let
 "syn keyword ocenKeyword fn
 syn keyword ocenLabel case
-syn keyword ocenRepeat for while
+syn keyword ocenRepeat for while in
 "syn keyword ocenStorageClass export static
 syn keyword ocenStructure enum struct union namespace typedef
 "syn keyword ocenTypedef type
@@ -142,25 +158,10 @@ hi def ocenErrorPropagation ctermfg=red cterm=bold guifg=red gui=bold
 " Highlight invalid attributes.
 hi def link ocenAttributeError Error
 
-" ---
-hi def link ocenFunc Function
-hi def link ocenTypedef Identifier
-hi def ocenType ctermfg=DarkCyan guifg=DarkCyan
-hi def ocenThis ctermfg=DarkMagenta guifg=DarkMagenta
-syn match ocenAttribute '\(^\s*\[\s*\)\@<=\w\w*\ze\s*.*\]'
-syn match Repeat   "\([^\.]\.\)\@<=\w\w*\(\(\[.*\]\)*\s*(\)\@!"
-syn match ocenFloat "\([0-9]\+\.\)\@<=[0-9][0-9]*\(f32\|f64\)*"
-syn match ocenThis '\(\w\)\@<!this\(\w\)\@!'
-syn match ocenType '\(\sas\s\+\W*\)\@<=\w\+'
-syn match ocenType '\(\(\W\|^\)\(let\|const\|def\)\s\+[^=]*\w\s*)*\s*:\s*\W*\|^\W*\w\w*\s*:\w*\)\@<=\w\+'
 syn match ocenTypedef  contains=ocenTypedef "\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*" display contained
 syn match ocenFunc    "\%(r#\)\=\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*" display contained
 "syn keyword Keyword   def nextgroup=Function skipwhite skipempty
 syn keyword ocenKeyword union struct enum namespace typedef nextgroup=ocenTypedef skipwhite skipempty
 syn keyword ocenKeyword union nextgroup=ocenType skipwhite skipempty contained
-syn match ocenFunc   "[0-9a-zA-Z_@]*\w\w*\(\(<.*>\s*\)*\(\[.*\]\)*\s*(\)\@="
-"syn match ocenFunc    "\w\(\w\)*\ze\(\[.*\]\s*\)*\s*("
-"syn match ocenFunc    "\w\(\w\)*<"he=e-1,me=e-1 " foo<T>();
-syn match ocenType    "\w\(\w\)*\ze\(<.*>\s*\)*::[^<]"
 
 " vim: et sw=2 sts=2 ts=8
