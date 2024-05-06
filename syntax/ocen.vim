@@ -18,17 +18,18 @@ hi def link ocenFunc Function
 hi def link ocenTypedef Identifier
 hi def ocenType ctermfg=DarkCyan guifg=DarkCyan
 hi def ocenThis ctermfg=DarkMagenta guifg=DarkMagenta
-syn match ocenAttribute '\(^\s*\[\s*\)\@<=\w\w*\ze\s*.*\]'
-syn match Repeat   "\([^\.]\.\)\@<=\w\w*\(\(\[.*\]\)*\s*(\)\@!"
+syn match ocenAttribute '\(^\s*\[\s*\)\@<=\w\w*\ze\s*.\{-}\]'
+syn match ocenType '\(\s*<\s*\)\@<=\w\w*\ze\s*.\{-}>'
+syn match Repeat   "\([^\.]\.\)\@<=\w\w*\(\(\[.\{-}\]\)*\s*(\)\@!"
 "syn match ocenFloat "\([0-9]\+\.\)\@<=[0-9][0-9]*\(f32\|f64\)*"
 syn match ocenThis '\(\w\)\@<!this\(\w\)\@!'
 "syn match ocenType '\(\sas\s\+\W*\)\@<=\w\+'
-syn match ocenType    "\w\(\w\)*\ze\(<.*>\s*\)*::[^<]"
+syn match ocenType    "\w\(\w\)*\ze\(<.\{-}>\s*\)*::[^<]"
 "syn match ocenFunc    "\w\(\w\)*\ze\(\[.*\]\s*\)*\s*("
 "syn match ocenFunc    "\w\(\w\)*<"he=e-1,me=e-1 " foo<T>();
 "syn match ocenType ')*\s*\(:\s*\(\(\(\[.*\]\)\|\({.*}\)\|\(\w\+\)\|\(\*\|?\|!\|&\)\)\s*\)*\)\@<=\w\w*'
-syn match ocenType '\(\(\(\W\|^\)\(let\|const\|def\)\s\+[^=]*\w\s*)*\s*:\s*\W*\)\|\(^\W*\w\w*\s*:\s*\w*\)\)\@<=\w\+'
-syn match ocenFunc   "[0-9a-zA-Z_@]\w*\(\(<.*>\s*\)*\(\[.*\]\)*\s*(\)\@="
+syn match ocenType '\(\(\(\W\|^\)\(let\|const\|def\)\s\+[^=]\{-}\s*)*\s*:\s*\W\{-}\)\|\(^\W\{-}\w\w*\s*:\s*\W\{-}\)\)\@<=\w\+\(.\{-},\s*$\)\@!'
+syn match ocenFunc   "[0-9a-zA-Z_@]\w*\(\(<.\{-}>\s*\)*\(\[.\{-}\]\)*\s*(\)\@="
 
 " SYNTAX {{{1
 syn case match
