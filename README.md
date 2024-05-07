@@ -1,10 +1,23 @@
 #### Vim plugin for ocen programming
-
-You can install [vimcomplete](https://github.com/girishji/vimcomplete) and setting [ocen.tags](https://github.com/Angluca/AcVim/blob/master/vimfiles/dict/ocen.tags)  
-[ocen.base.dict](https://github.com/Angluca/AcVim/blob/master/vimfiles/dict/ocen.base.dict) with [ocen.dict](https://github.com/Angluca/AcVim/blob/master/vimfiles/dict/ocen.dict) for autocomple If you use vim  
-quickly building use ```:make```
 ```vim
-au FileType ocen let $OCENLIB = ~/ocen/std'
-au FileType ocen setl tags=~/dict/ocen.tags
-au FileType ocen setl dict=~/dict/ocen.base.dict,~/dict/ocen.dict
+Plug 'angluca/ocen.vim'
+Plug 'girishji/vimcomplete'
+Plug 'yegappan/lsp'
+
+if has("win32")
+let $VIM=$HOME.'/vimfiles/'
+else
+let $VIM=$HOME.'/.vim/'
+endif
+au FileType ocen let $OCEN = $HOME.'/SDK/Ocens/ocen/std'
+au FileType ocen setl tags+=$VIM/bundle/ocen.vim/tags/ocen.tags
+au FileType ocen setl dict+=$VIM/bundle/ocen.vim/tags/ocen.dict
+au FileType ocen setl dict+=$VIM/bundle/ocen.vim/tags/ocen.base.dict
+
+"au FileType ocen let $RAYLIB = $HOME.'/SDK/Ocens/raylib-ocen/c/include'
+"au FileType ocen setl tags+=$VIM/bundle/ocen.vim/tags/raylib.tags
+"au FileType ocen setl dict+=$VIM/bundle/ocen.vim/tags/raylib.dict
 ```
+You can install [vimcomplete](https://github.com/girishji/vimcomplete) and setting for autocomple  
+quickly building use ```:make```
+
