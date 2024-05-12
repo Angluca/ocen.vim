@@ -46,13 +46,27 @@ BeginVrStereoMode	$RAYLIB/raylib.h	/^RLAPI void BeginVrStereoMode(VrStereoConfig
 BlendMode	$RAYLIB/raylib.h	/^} BlendMode;$/;"	t	typeref:enum:__anonfdf2e0de1203
 BoneInfo	$RAYLIB/raylib.h	/^} BoneInfo;$/;"	t	typeref:struct:BoneInfo
 BoundingBox	$RAYLIB/raylib.h	/^} BoundingBox;$/;"	t	typeref:struct:BoundingBox
+CAMERA_CULL_DISTANCE_FAR	$RAYLIB/rcamera.h	/^    #define CAMERA_CULL_DISTANCE_FAR /;"	d
+CAMERA_CULL_DISTANCE_NEAR	$RAYLIB/rcamera.h	/^    #define CAMERA_CULL_DISTANCE_NEAR /;"	d
 CAMERA_CUSTOM	$RAYLIB/raylib.h	/^    CAMERA_CUSTOM = 0,              \/\/ Camera custom, controlled by user (UpdateCamera() does /;"	e	enum:__anonfdf2e0de1403
+CAMERA_CUSTOM	$RAYLIB/rcamera.h	/^        CAMERA_CUSTOM = 0,      \/\/ Camera custom, controlled by user (UpdateCamera() does noth/;"	e	enum:__anon5f7352d60203
 CAMERA_FIRST_PERSON	$RAYLIB/raylib.h	/^    CAMERA_FIRST_PERSON,            \/\/ Camera first person$/;"	e	enum:__anonfdf2e0de1403
+CAMERA_FIRST_PERSON	$RAYLIB/rcamera.h	/^        CAMERA_FIRST_PERSON,    \/\/ Camera first person$/;"	e	enum:__anon5f7352d60203
 CAMERA_FREE	$RAYLIB/raylib.h	/^    CAMERA_FREE,                    \/\/ Camera free mode$/;"	e	enum:__anonfdf2e0de1403
+CAMERA_FREE	$RAYLIB/rcamera.h	/^        CAMERA_FREE,            \/\/ Camera free mode$/;"	e	enum:__anon5f7352d60203
+CAMERA_MOUSE_MOVE_SENSITIVITY	$RAYLIB/rcamera.h	/^#define CAMERA_MOUSE_MOVE_SENSITIVITY /;"	d
+CAMERA_MOVE_SPEED	$RAYLIB/rcamera.h	/^#define CAMERA_MOVE_SPEED /;"	d
 CAMERA_ORBITAL	$RAYLIB/raylib.h	/^    CAMERA_ORBITAL,                 \/\/ Camera orbital, around target, zoom supported$/;"	e	enum:__anonfdf2e0de1403
+CAMERA_ORBITAL	$RAYLIB/rcamera.h	/^        CAMERA_ORBITAL,         \/\/ Camera orbital, around target, zoom supported$/;"	e	enum:__anon5f7352d60203
+CAMERA_ORBITAL_SPEED	$RAYLIB/rcamera.h	/^#define CAMERA_ORBITAL_SPEED /;"	d
 CAMERA_ORTHOGRAPHIC	$RAYLIB/raylib.h	/^    CAMERA_ORTHOGRAPHIC             \/\/ Orthographic projection$/;"	e	enum:__anonfdf2e0de1503
+CAMERA_ORTHOGRAPHIC	$RAYLIB/rcamera.h	/^        CAMERA_ORTHOGRAPHIC     \/\/ Orthographic projection$/;"	e	enum:__anon5f7352d60103
+CAMERA_PAN_SPEED	$RAYLIB/rcamera.h	/^#define CAMERA_PAN_SPEED /;"	d
 CAMERA_PERSPECTIVE	$RAYLIB/raylib.h	/^    CAMERA_PERSPECTIVE = 0,         \/\/ Perspective projection$/;"	e	enum:__anonfdf2e0de1503
+CAMERA_PERSPECTIVE	$RAYLIB/rcamera.h	/^        CAMERA_PERSPECTIVE = 0, \/\/ Perspective projection$/;"	e	enum:__anon5f7352d60103
+CAMERA_ROTATION_SPEED	$RAYLIB/rcamera.h	/^#define CAMERA_ROTATION_SPEED /;"	d
 CAMERA_THIRD_PERSON	$RAYLIB/raylib.h	/^    CAMERA_THIRD_PERSON             \/\/ Camera third person$/;"	e	enum:__anonfdf2e0de1403
+CAMERA_THIRD_PERSON	$RAYLIB/rcamera.h	/^        CAMERA_THIRD_PERSON     \/\/ Camera third person$/;"	e	enum:__anon5f7352d60203
 CHECKBOX	$RAYLIB/raygui.h	/^    CHECKBOX,$/;"	e	enum:__anonfd9f18ac0603
 CHECK_BOUNDS_ID	$RAYLIB/raygui.h	/^    #define CHECK_BOUNDS_ID(/;"	d	signature:(src,dst)
 CHECK_PADDING	$RAYLIB/raygui.h	/^    CHECK_PADDING = 16          \/\/ CheckBox internal check padding$/;"	e	enum:__anonfd9f18ac0d03
@@ -69,10 +83,21 @@ CUBEMAP_LAYOUT_LINE_HORIZONTAL	$RAYLIB/raylib.h	/^    CUBEMAP_LAYOUT_LINE_HORIZO
 CUBEMAP_LAYOUT_LINE_VERTICAL	$RAYLIB/raylib.h	/^    CUBEMAP_LAYOUT_LINE_VERTICAL,           \/\/ Layout is defined by a vertical line with faces$/;"	e	enum:__anonfdf2e0de1003
 CUBEMAP_LAYOUT_PANORAMA	$RAYLIB/raylib.h	/^    CUBEMAP_LAYOUT_PANORAMA                 \/\/ Layout is defined by a panorama image (equirrec/;"	e	enum:__anonfdf2e0de1003
 Camera	$RAYLIB/raylib.h	/^typedef Camera3D Camera;    \/\/ Camera type fallback, defaults to Camera3D$/;"	t	typeref:typename:Camera3D
+Camera	$RAYLIB/rcamera.h	/^    typedef Camera3D Camera;    \/\/ Camera type fallback, defaults to Camera3D$/;"	t	typeref:typename:Camera3D
 Camera2D	$RAYLIB/raylib.h	/^} Camera2D;$/;"	t	typeref:struct:Camera2D
 Camera3D	$RAYLIB/raylib.h	/^} Camera3D;$/;"	t	typeref:struct:Camera3D
+Camera3D	$RAYLIB/rcamera.h	/^    } Camera3D;$/;"	t	typeref:struct:Camera3D
 CameraMode	$RAYLIB/raylib.h	/^} CameraMode;$/;"	t	typeref:enum:__anonfdf2e0de1403
+CameraMode	$RAYLIB/rcamera.h	/^    } CameraMode;$/;"	t	typeref:enum:__anon5f7352d60203
+CameraMoveForward	$RAYLIB/rcamera.h	/^void CameraMoveForward(Camera *camera, float distance, bool moveInWorldPlane)$/;"	f	typeref:typename:void	signature:(Camera * camera,float distance,bool moveInWorldPlane)
+CameraMoveRight	$RAYLIB/rcamera.h	/^void CameraMoveRight(Camera *camera, float distance, bool moveInWorldPlane)$/;"	f	typeref:typename:void	signature:(Camera * camera,float distance,bool moveInWorldPlane)
+CameraMoveToTarget	$RAYLIB/rcamera.h	/^void CameraMoveToTarget(Camera *camera, float delta)$/;"	f	typeref:typename:void	signature:(Camera * camera,float delta)
+CameraMoveUp	$RAYLIB/rcamera.h	/^void CameraMoveUp(Camera *camera, float distance)$/;"	f	typeref:typename:void	signature:(Camera * camera,float distance)
+CameraPitch	$RAYLIB/rcamera.h	/^void CameraPitch(Camera *camera, float angle, bool lockView, bool rotateAroundTarget, bool rotat/;"	f	typeref:typename:void	signature:(Camera * camera,float angle,bool lockView,bool rotateAroundTarget,bool rotateUp)
 CameraProjection	$RAYLIB/raylib.h	/^} CameraProjection;$/;"	t	typeref:enum:__anonfdf2e0de1503
+CameraProjection	$RAYLIB/rcamera.h	/^    } CameraProjection;$/;"	t	typeref:enum:__anon5f7352d60103
+CameraRoll	$RAYLIB/rcamera.h	/^void CameraRoll(Camera *camera, float angle)$/;"	f	typeref:typename:void	signature:(Camera * camera,float angle)
+CameraYaw	$RAYLIB/rcamera.h	/^void CameraYaw(Camera *camera, float angle, bool rotateAroundTarget)$/;"	f	typeref:typename:void	signature:(Camera * camera,float angle,bool rotateAroundTarget)
 ChangeDirectory	$RAYLIB/raylib.h	/^RLAPI bool ChangeDirectory(const char *dir);                      \/\/ Change working directory,/;"	p	typeref:typename:RLAPI bool	signature:(const char * dir)
 CheckCollisionBoxSphere	$RAYLIB/raylib.h	/^RLAPI bool CheckCollisionBoxSphere(BoundingBox box, Vector3 center, float radius);              /;"	p	typeref:typename:RLAPI bool	signature:(BoundingBox box,Vector3 center,float radius)
 CheckCollisionBoxes	$RAYLIB/raylib.h	/^RLAPI bool CheckCollisionBoxes(BoundingBox box1, BoundingBox box2);                             /;"	p	typeref:typename:RLAPI bool	signature:(BoundingBox box1,BoundingBox box2)
@@ -372,8 +397,13 @@ GenMeshTorus	$RAYLIB/raylib.h	/^RLAPI Mesh GenMeshTorus(float radius, float size
 GenTextureMipmaps	$RAYLIB/raylib.h	/^RLAPI void GenTextureMipmaps(Texture2D *texture);                                               /;"	p	typeref:typename:RLAPI void	signature:(Texture2D * texture)
 Gesture	$RAYLIB/raylib.h	/^} Gesture;$/;"	t	typeref:enum:__anonfdf2e0de1303
 GetApplicationDirectory	$RAYLIB/raylib.h	/^RLAPI const char *GetApplicationDirectory(void);                  \/\/ Get the directory of the /;"	p	typeref:typename:RLAPI const char *	signature:(void)
+GetCameraForward	$RAYLIB/rcamera.h	/^Vector3 GetCameraForward(Camera *camera)$/;"	f	typeref:typename:Vector3	signature:(Camera * camera)
 GetCameraMatrix	$RAYLIB/raylib.h	/^RLAPI Matrix GetCameraMatrix(Camera camera);                            \/\/ Get camera transfor/;"	p	typeref:typename:RLAPI Matrix	signature:(Camera camera)
 GetCameraMatrix2D	$RAYLIB/raylib.h	/^RLAPI Matrix GetCameraMatrix2D(Camera2D camera);                        \/\/ Get camera 2d trans/;"	p	typeref:typename:RLAPI Matrix	signature:(Camera2D camera)
+GetCameraProjectionMatrix	$RAYLIB/rcamera.h	/^RLAPI Matrix GetCameraProjectionMatrix(Camera* camera, float aspect);$/;"	p	typeref:typename:RLAPI Matrix	signature:(Camera * camera,float aspect)
+GetCameraRight	$RAYLIB/rcamera.h	/^Vector3 GetCameraRight(Camera *camera)$/;"	f	typeref:typename:Vector3	signature:(Camera * camera)
+GetCameraUp	$RAYLIB/rcamera.h	/^Vector3 GetCameraUp(Camera *camera)$/;"	f	typeref:typename:Vector3	signature:(Camera * camera)
+GetCameraViewMatrix	$RAYLIB/rcamera.h	/^RLAPI Matrix GetCameraViewMatrix(Camera *camera);$/;"	p	typeref:typename:RLAPI Matrix	signature:(Camera * camera)
 GetCharPressed	$RAYLIB/raygui.h	/^static int GetCharPressed(void);         \/\/ -- GuiTextBox(), GuiValueBox()$/;"	p	typeref:typename:int	signature:(void)
 GetCharPressed	$RAYLIB/raylib.h	/^RLAPI int GetCharPressed(void);                               \/\/ Get char pressed (unicode), c/;"	p	typeref:typename:RLAPI int	signature:(void)
 GetClipboardText	$RAYLIB/raylib.h	/^RLAPI const char *GetClipboardText(void);                         \/\/ Get clipboard text conten/;"	p	typeref:typename:RLAPI const char *	signature:(void)
@@ -564,6 +594,7 @@ GuiToggleSlider	$RAYLIB/raygui.h	/^int GuiToggleSlider(Rectangle bounds, const c
 GuiTooltip	$RAYLIB/raygui.h	/^static void GuiTooltip(Rectangle controlRec);                   \/\/ Draw tooltip using control /;"	p	typeref:typename:void	signature:(Rectangle controlRec)
 GuiUnlock	$RAYLIB/raygui.h	/^void GuiUnlock(void) { guiLocked = false; }$/;"	f	typeref:typename:void	signature:(void)
 GuiValueBox	$RAYLIB/raygui.h	/^int GuiValueBox(Rectangle bounds, const char *text, int *value, int minValue, int maxValue, bool/;"	f	typeref:typename:int	signature:(Rectangle bounds,const char * text,int * value,int minValue,int maxValue,bool editMode)
+GuiValueBoxFloat	$RAYLIB/raygui.h	/^int GuiValueBoxFloat(Rectangle bounds, const char *text, char *textValue, float *value, bool edi/;"	f	typeref:typename:int	signature:(Rectangle bounds,const char * text,char * textValue,float * value,bool editMode)
 GuiWindowBox	$RAYLIB/raygui.h	/^int GuiWindowBox(Rectangle bounds, const char *title)$/;"	f	typeref:typename:int	signature:(Rectangle bounds,const char * title)
 HUEBAR_PADDING	$RAYLIB/raygui.h	/^    HUEBAR_PADDING,             \/\/ ColorPicker right hue bar separation from panel$/;"	e	enum:__anonfd9f18ac1303
 HUEBAR_SELECTOR_HEIGHT	$RAYLIB/raygui.h	/^    HUEBAR_SELECTOR_HEIGHT,     \/\/ ColorPicker right hue bar selector height$/;"	e	enum:__anonfd9f18ac1303
@@ -1155,6 +1186,7 @@ MaterialMap	$RAYLIB/raylib.h	/^} MaterialMap;$/;"	t	typeref:struct:MaterialMap
 MaterialMapIndex	$RAYLIB/raylib.h	/^} MaterialMapIndex;$/;"	t	typeref:enum:__anonfdf2e0de0903
 Matrix	$RAYLIB/raylib.h	/^} Matrix;$/;"	t	typeref:struct:Matrix
 Matrix	$RAYLIB/raymath.h	/^} Matrix;$/;"	t	typeref:struct:Matrix
+Matrix	$RAYLIB/rcamera.h	/^    } Matrix;$/;"	t	typeref:struct:Matrix
 Matrix	$RAYLIB/rlgl.h	/^} Matrix;$/;"	t	typeref:struct:Matrix
 MatrixAdd	$RAYLIB/raymath.h	/^RMAPI Matrix MatrixAdd(Matrix left, Matrix right)$/;"	f	typeref:typename:RMAPI Matrix	signature:(Matrix left,Matrix right)
 MatrixDeterminant	$RAYLIB/raymath.h	/^RMAPI float MatrixDeterminant(Matrix mat)$/;"	f	typeref:typename:RMAPI float	signature:(Matrix mat)
@@ -1319,8 +1351,10 @@ RAYLIB_VERSION_MINOR	$RAYLIB/raylib.h	/^#define RAYLIB_VERSION_MINOR /;"	d
 RAYLIB_VERSION_PATCH	$RAYLIB/raylib.h	/^#define RAYLIB_VERSION_PATCH /;"	d
 RAYMATH_H	$RAYLIB/raymath.h	/^#define RAYMATH_H$/;"	d
 RAYWHITE	$RAYLIB/raylib.h	/^#define RAYWHITE /;"	d
+RCAMERA_H	$RAYLIB/rcamera.h	/^#define RCAMERA_H$/;"	d
 RED	$RAYLIB/raylib.h	/^#define RED /;"	d
 RLAPI	$RAYLIB/raylib.h	/^    #define RLAPI /;"	d
+RLAPI	$RAYLIB/rcamera.h	/^#define RLAPI$/;"	d
 RLAPI	$RAYLIB/rlgl.h	/^    #define RLAPI /;"	d
 RLGL	$RAYLIB/rlgl.h	/^static rlglData RLGL = { 0 };$/;"	v	typeref:typename:rlglData
 RLGL_H	$RAYLIB/rlgl.h	/^#define RLGL_H$/;"	d
@@ -1754,6 +1788,7 @@ TextReplace	$RAYLIB/raylib.h	/^RLAPI char *TextReplace(const char *text, const c
 TextSplit	$RAYLIB/raygui.h	/^static const char **TextSplit(const char *text, char delimiter, int *count);    \/\/ Split text /;"	p	typeref:typename:const char **	signature:(const char * text,char delimiter,int * count)
 TextSplit	$RAYLIB/raylib.h	/^RLAPI const char **TextSplit(const char *text, char delimiter, int *count);                 \/\//;"	p	typeref:typename:RLAPI const char **	signature:(const char * text,char delimiter,int * count)
 TextSubtext	$RAYLIB/raylib.h	/^RLAPI const char *TextSubtext(const char *text, int position, int length);                  \/\//;"	p	typeref:typename:RLAPI const char *	signature:(const char * text,int position,int length)
+TextToFloat	$RAYLIB/raygui.h	/^static float TextToFloat(const char *text);         \/\/ Get float value from text$/;"	p	typeref:typename:float	signature:(const char * text)
 TextToFloat	$RAYLIB/raylib.h	/^RLAPI float TextToFloat(const char *text);                            \/\/ Get float value from /;"	p	typeref:typename:RLAPI float	signature:(const char * text)
 TextToInteger	$RAYLIB/raygui.h	/^static int TextToInteger(const char *text);         \/\/ Get integer value from text$/;"	p	typeref:typename:int	signature:(const char * text)
 TextToInteger	$RAYLIB/raylib.h	/^RLAPI int TextToInteger(const char *text);                            \/\/ Get integer value fro/;"	p	typeref:typename:RLAPI int	signature:(const char * text)
@@ -1804,7 +1839,9 @@ UnloadWave	$RAYLIB/raylib.h	/^RLAPI void UnloadWave(Wave wave);                 
 UnloadWaveSamples	$RAYLIB/raylib.h	/^RLAPI void UnloadWaveSamples(float *samples);                         \/\/ Unload samples data l/;"	p	typeref:typename:RLAPI void	signature:(float * samples)
 UpdateAudioStream	$RAYLIB/raylib.h	/^RLAPI void UpdateAudioStream(AudioStream stream, const void *data, int frameCount); \/\/ Update /;"	p	typeref:typename:RLAPI void	signature:(AudioStream stream,const void * data,int frameCount)
 UpdateCamera	$RAYLIB/raylib.h	/^RLAPI void UpdateCamera(Camera *camera, int mode);      \/\/ Update camera position for selected/;"	p	typeref:typename:RLAPI void	signature:(Camera * camera,int mode)
+UpdateCamera	$RAYLIB/rcamera.h	/^void UpdateCamera(Camera *camera, int mode)$/;"	f	typeref:typename:void	signature:(Camera * camera,int mode)
 UpdateCameraPro	$RAYLIB/raylib.h	/^RLAPI void UpdateCameraPro(Camera *camera, Vector3 movement, Vector3 rotation, float zoom); \/\//;"	p	typeref:typename:RLAPI void	signature:(Camera * camera,Vector3 movement,Vector3 rotation,float zoom)
+UpdateCameraPro	$RAYLIB/rcamera.h	/^void UpdateCameraPro(Camera *camera, Vector3 movement, Vector3 rotation, float zoom)$/;"	f	typeref:typename:void	signature:(Camera * camera,Vector3 movement,Vector3 rotation,float zoom)
 UpdateMeshBuffer	$RAYLIB/raylib.h	/^RLAPI void UpdateMeshBuffer(Mesh mesh, int index, const void *data, int dataSize, int offset); \//;"	p	typeref:typename:RLAPI void	signature:(Mesh mesh,int index,const void * data,int dataSize,int offset)
 UpdateModelAnimation	$RAYLIB/raylib.h	/^RLAPI void UpdateModelAnimation(Model model, ModelAnimation anim, int frame);               \/\//;"	p	typeref:typename:RLAPI void	signature:(Model model,ModelAnimation anim,int frame)
 UpdateMusicStream	$RAYLIB/raylib.h	/^RLAPI void UpdateMusicStream(Music music);                            \/\/ Updates buffers for m/;"	p	typeref:typename:RLAPI void	signature:(Music music)
@@ -1817,6 +1854,7 @@ VIOLET	$RAYLIB/raylib.h	/^#define VIOLET /;"	d
 Vector2	$RAYLIB/raygui.h	/^    } Vector2;$/;"	t	typeref:struct:Vector2
 Vector2	$RAYLIB/raylib.h	/^} Vector2;$/;"	t	typeref:struct:Vector2
 Vector2	$RAYLIB/raymath.h	/^} Vector2;$/;"	t	typeref:struct:Vector2
+Vector2	$RAYLIB/rcamera.h	/^    } Vector2;$/;"	t	typeref:struct:Vector2
 Vector2Add	$RAYLIB/raymath.h	/^RMAPI Vector2 Vector2Add(Vector2 v1, Vector2 v2)$/;"	f	typeref:typename:RMAPI Vector2	signature:(Vector2 v1,Vector2 v2)
 Vector2AddValue	$RAYLIB/raymath.h	/^RMAPI Vector2 Vector2AddValue(Vector2 v, float add)$/;"	f	typeref:typename:RMAPI Vector2	signature:(Vector2 v,float add)
 Vector2Angle	$RAYLIB/raymath.h	/^RMAPI float Vector2Angle(Vector2 v1, Vector2 v2)$/;"	f	typeref:typename:RMAPI float	signature:(Vector2 v1,Vector2 v2)
@@ -1850,6 +1888,7 @@ Vector2Zero	$RAYLIB/raymath.h	/^RMAPI Vector2 Vector2Zero(void)$/;"	f	typeref:ty
 Vector3	$RAYLIB/raygui.h	/^    } Vector3;$/;"	t	typeref:struct:Vector3
 Vector3	$RAYLIB/raylib.h	/^} Vector3;$/;"	t	typeref:struct:Vector3
 Vector3	$RAYLIB/raymath.h	/^} Vector3;$/;"	t	typeref:struct:Vector3
+Vector3	$RAYLIB/rcamera.h	/^    } Vector3;$/;"	t	typeref:struct:Vector3
 Vector3Add	$RAYLIB/raymath.h	/^RMAPI Vector3 Vector3Add(Vector3 v1, Vector3 v2)$/;"	f	typeref:typename:RMAPI Vector3	signature:(Vector3 v1,Vector3 v2)
 Vector3AddValue	$RAYLIB/raymath.h	/^RMAPI Vector3 Vector3AddValue(Vector3 v, float add)$/;"	f	typeref:typename:RMAPI Vector3	signature:(Vector3 v,float add)
 Vector3Angle	$RAYLIB/raymath.h	/^RMAPI float Vector3Angle(Vector3 v1, Vector3 v2)$/;"	f	typeref:typename:RMAPI float	signature:(Vector3 v1,Vector3 v2)
@@ -1940,6 +1979,8 @@ __anon19a7bfac0b03	$RAYLIB/rlgl.h	/^typedef enum {$/;"	g
 __anon19a7bfac0c03	$RAYLIB/rlgl.h	/^typedef enum {$/;"	g
 __anon19a7bfac0d08	$RAYLIB/rlgl.h	/^    struct {$/;"	s	struct:rlglData
 __anon19a7bfac0e08	$RAYLIB/rlgl.h	/^    struct {$/;"	s	struct:rlglData
+__anon5f7352d60103	$RAYLIB/rcamera.h	/^    typedef enum {$/;"	g
+__anon5f7352d60203	$RAYLIB/rcamera.h	/^    typedef enum {$/;"	g
 __anonfd9f18ac0103	$RAYLIB/raygui.h	/^            typedef enum { false, true } bool;$/;"	t	typeref:enum:bool
 __anonfd9f18ac0203	$RAYLIB/raygui.h	/^typedef enum {$/;"	g
 __anonfd9f18ac0303	$RAYLIB/raygui.h	/^typedef enum {$/;"	g
@@ -2045,6 +2086,7 @@ float3	$RAYLIB/raymath.h	/^} float3;$/;"	t	typeref:struct:float3
 format	$RAYLIB/raygui.h	/^        int format;             \/\/ Data format (PixelFormat type)$/;"	m	struct:Texture2D	typeref:typename:int
 format	$RAYLIB/raylib.h	/^    int format;             \/\/ Data format (PixelFormat type)$/;"	m	struct:Texture	typeref:typename:int
 fovy	$RAYLIB/raylib.h	/^    float fovy;             \/\/ Camera field-of-view aperture in Y (degrees) in perspective, us/;"	m	struct:Camera3D	typeref:typename:float
+fovy	$RAYLIB/rcamera.h	/^        float fovy;             \/\/ Camera field-of-view apperture in Y (degrees) in perspectiv/;"	m	struct:Camera3D	typeref:typename:float
 frame	$RAYLIB/raylib.h	/^    unsigned int frame;             \/\/ Event frame$/;"	m	struct:AutomationEvent	typeref:typename:unsigned int
 frameCount	$RAYLIB/raylib.h	/^    unsigned int frameCount;    \/\/ Total number of frames (considering channels)$/;"	m	struct:Wave	typeref:typename:unsigned int
 framePoses	$RAYLIB/raylib.h	/^    Transform **framePoses; \/\/ Poses array by frame$/;"	m	struct:ModelAnimation	typeref:typename:Transform **
@@ -2107,21 +2149,27 @@ locs	$RAYLIB/raylib.h	/^    int *locs;              \/\/ Shader locations array 
 looping	$RAYLIB/raylib.h	/^    bool looping;               \/\/ Music looping enable$/;"	m	struct:Music	typeref:typename:bool
 m10	$RAYLIB/raylib.h	/^    float m2, m6, m10, m14; \/\/ Matrix third row (4 components)$/;"	m	struct:Matrix	typeref:typename:float
 m10	$RAYLIB/raymath.h	/^    float m2, m6, m10, m14;     \/\/ Matrix third row (4 components)$/;"	m	struct:Matrix	typeref:typename:float
+m10	$RAYLIB/rcamera.h	/^        float m2, m6, m10, m14; \/\/ Matrix third row (4 components)$/;"	m	struct:Matrix	typeref:typename:float
 m10	$RAYLIB/rlgl.h	/^    float m2, m6, m10, m14;     \/\/ Matrix third row (4 components)$/;"	m	struct:Matrix	typeref:typename:float
 m11	$RAYLIB/raylib.h	/^    float m3, m7, m11, m15; \/\/ Matrix fourth row (4 components)$/;"	m	struct:Matrix	typeref:typename:float
 m11	$RAYLIB/raymath.h	/^    float m3, m7, m11, m15;     \/\/ Matrix fourth row (4 components)$/;"	m	struct:Matrix	typeref:typename:float
+m11	$RAYLIB/rcamera.h	/^        float m3, m7, m11, m15; \/\/ Matrix fourth row (4 components)$/;"	m	struct:Matrix	typeref:typename:float
 m11	$RAYLIB/rlgl.h	/^    float m3, m7, m11, m15;     \/\/ Matrix fourth row (4 components)$/;"	m	struct:Matrix	typeref:typename:float
 m12	$RAYLIB/raylib.h	/^    float m0, m4, m8, m12;  \/\/ Matrix first row (4 components)$/;"	m	struct:Matrix	typeref:typename:float
 m12	$RAYLIB/raymath.h	/^    float m0, m4, m8, m12;      \/\/ Matrix first row (4 components)$/;"	m	struct:Matrix	typeref:typename:float
+m12	$RAYLIB/rcamera.h	/^        float m0, m4, m8, m12;  \/\/ Matrix first row (4 components)$/;"	m	struct:Matrix	typeref:typename:float
 m12	$RAYLIB/rlgl.h	/^    float m0, m4, m8, m12;      \/\/ Matrix first row (4 components)$/;"	m	struct:Matrix	typeref:typename:float
 m13	$RAYLIB/raylib.h	/^    float m1, m5, m9, m13;  \/\/ Matrix second row (4 components)$/;"	m	struct:Matrix	typeref:typename:float
 m13	$RAYLIB/raymath.h	/^    float m1, m5, m9, m13;      \/\/ Matrix second row (4 components)$/;"	m	struct:Matrix	typeref:typename:float
+m13	$RAYLIB/rcamera.h	/^        float m1, m5, m9, m13;  \/\/ Matrix second row (4 components)$/;"	m	struct:Matrix	typeref:typename:float
 m13	$RAYLIB/rlgl.h	/^    float m1, m5, m9, m13;      \/\/ Matrix second row (4 components)$/;"	m	struct:Matrix	typeref:typename:float
 m14	$RAYLIB/raylib.h	/^    float m2, m6, m10, m14; \/\/ Matrix third row (4 components)$/;"	m	struct:Matrix	typeref:typename:float
 m14	$RAYLIB/raymath.h	/^    float m2, m6, m10, m14;     \/\/ Matrix third row (4 components)$/;"	m	struct:Matrix	typeref:typename:float
+m14	$RAYLIB/rcamera.h	/^        float m2, m6, m10, m14; \/\/ Matrix third row (4 components)$/;"	m	struct:Matrix	typeref:typename:float
 m14	$RAYLIB/rlgl.h	/^    float m2, m6, m10, m14;     \/\/ Matrix third row (4 components)$/;"	m	struct:Matrix	typeref:typename:float
 m15	$RAYLIB/raylib.h	/^    float m3, m7, m11, m15; \/\/ Matrix fourth row (4 components)$/;"	m	struct:Matrix	typeref:typename:float
 m15	$RAYLIB/raymath.h	/^    float m3, m7, m11, m15;     \/\/ Matrix fourth row (4 components)$/;"	m	struct:Matrix	typeref:typename:float
+m15	$RAYLIB/rcamera.h	/^        float m3, m7, m11, m15; \/\/ Matrix fourth row (4 components)$/;"	m	struct:Matrix	typeref:typename:float
 m15	$RAYLIB/rlgl.h	/^    float m3, m7, m11, m15;     \/\/ Matrix fourth row (4 components)$/;"	m	struct:Matrix	typeref:typename:float
 maps	$RAYLIB/raylib.h	/^    MaterialMap *maps;      \/\/ Material maps array (MAX_MATERIAL_MAPS)$/;"	m	struct:Material	typeref:typename:MaterialMap *
 materialCount	$RAYLIB/raylib.h	/^    int materialCount;      \/\/ Number of materials$/;"	m	struct:Model	typeref:typename:int
@@ -2154,8 +2202,10 @@ parent	$RAYLIB/raylib.h	/^    int parent;             \/\/ Bone parent$/;"	m	str
 paths	$RAYLIB/raylib.h	/^    char **paths;                   \/\/ Filepaths entries$/;"	m	struct:FilePathList	typeref:typename:char **
 point	$RAYLIB/raylib.h	/^    Vector3 point;          \/\/ Point of the nearest hit$/;"	m	struct:RayCollision	typeref:typename:Vector3
 position	$RAYLIB/raylib.h	/^    Vector3 position;       \/\/ Ray position (origin)$/;"	m	struct:Ray	typeref:typename:Vector3
+position	$RAYLIB/rcamera.h	/^        Vector3 position;       \/\/ Camera position$/;"	m	struct:Camera3D	typeref:typename:Vector3
 processor	$RAYLIB/raylib.h	/^    rAudioProcessor *processor; \/\/ Pointer to internal data processor, useful for audio effect/;"	m	struct:AudioStream	typeref:typename:rAudioProcessor *
 projection	$RAYLIB/raylib.h	/^    int projection;         \/\/ Camera projection: CAMERA_PERSPECTIVE or CAMERA_ORTHOGRAPHIC$/;"	m	struct:Camera3D	typeref:typename:int
+projection	$RAYLIB/rcamera.h	/^        int projection;         \/\/ Camera projection type: CAMERA_PERSPECTIVE or CAMERA_ORTHOG/;"	m	struct:Camera3D	typeref:typename:int
 projection	$RAYLIB/rlgl.h	/^        Matrix projection;                  \/\/ Default projection matrix$/;"	m	struct:rlglData::__anon19a7bfac0d08	typeref:typename:Matrix
 projectionStereo	$RAYLIB/rlgl.h	/^        Matrix projectionStereo[2];         \/\/ VR stereo rendering eyes projection matrices$/;"	m	struct:rlglData::__anon19a7bfac0d08	typeref:typename:Matrix[2]
 propertyId	$RAYLIB/raygui.h	/^    unsigned short propertyId;  \/\/ Property identifier$/;"	m	struct:GuiStyleProp	typeref:typename:unsigned short
@@ -2175,7 +2225,7 @@ rlBindImageTexture	$RAYLIB/rlgl.h	/^void rlBindImageTexture(unsigned int id, uns
 rlBindShaderBuffer	$RAYLIB/rlgl.h	/^void rlBindShaderBuffer(unsigned int id, unsigned int index)$/;"	f	typeref:typename:void	signature:(unsigned int id,unsigned int index)
 rlBlendMode	$RAYLIB/rlgl.h	/^} rlBlendMode;$/;"	t	typeref:enum:__anon19a7bfac0603
 rlBlitFramebuffer	$RAYLIB/rlgl.h	/^void rlBlitFramebuffer(int srcX, int srcY, int srcWidth, int srcHeight, int dstX, int dstY, int /;"	f	typeref:typename:void	signature:(int srcX,int srcY,int srcWidth,int srcHeight,int dstX,int dstY,int dstWidth,int dstHeight,int bufferMask)
-rlCheckErrors	$RAYLIB/rlgl.h	/^void rlCheckErrors()$/;"	f	typeref:typename:void	signature:()
+rlCheckErrors	$RAYLIB/rlgl.h	/^void rlCheckErrors(void)$/;"	f	typeref:typename:void	signature:(void)
 rlCheckRenderBatchLimit	$RAYLIB/rlgl.h	/^bool rlCheckRenderBatchLimit(int vCount)$/;"	f	typeref:typename:bool	signature:(int vCount)
 rlClearColor	$RAYLIB/rlgl.h	/^void rlClearColor(unsigned char r, unsigned char g, unsigned char b, unsigned char a)$/;"	f	typeref:typename:void	signature:(unsigned char r,unsigned char g,unsigned char b,unsigned char a)
 rlClearScreenBuffers	$RAYLIB/rlgl.h	/^void rlClearScreenBuffers(void)$/;"	f	typeref:typename:void	signature:(void)
@@ -2366,6 +2416,7 @@ stereoRender	$RAYLIB/rlgl.h	/^        bool stereoRender;                  \/\/ S
 stream	$RAYLIB/raylib.h	/^    AudioStream stream;         \/\/ Audio stream$/;"	m	struct:Sound	typeref:typename:AudioStream
 tangents	$RAYLIB/raylib.h	/^    float *tangents;        \/\/ Vertex tangents (XYZW - 4 components per vertex) (shader-locati/;"	m	struct:Mesh	typeref:typename:float *
 target	$RAYLIB/raylib.h	/^    Vector3 target;         \/\/ Camera target it looks-at$/;"	m	struct:Camera3D	typeref:typename:Vector3
+target	$RAYLIB/rcamera.h	/^        Vector3 target;         \/\/ Camera target it looks-at$/;"	m	struct:Camera3D	typeref:typename:Vector3
 texAnisoFilter	$RAYLIB/rlgl.h	/^        bool texAnisoFilter;                \/\/ Anisotropic texture filtering support (GL_EXT_t/;"	m	struct:rlglData::__anon19a7bfac0e08	typeref:typename:bool
 texCompASTC	$RAYLIB/rlgl.h	/^        bool texCompASTC;                   \/\/ ASTC texture compression support (GL_KHR_textur/;"	m	struct:rlglData::__anon19a7bfac0e08	typeref:typename:bool
 texCompDXT	$RAYLIB/rlgl.h	/^        bool texCompDXT;                    \/\/ DDS texture compression support (GL_EXT_texture/;"	m	struct:rlglData::__anon19a7bfac0e08	typeref:typename:bool

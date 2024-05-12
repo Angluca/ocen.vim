@@ -69,6 +69,7 @@ MouseWheelEvent
 NUM_SCANCODES
 Node
 Note
+OC_NO_BACKTRACE
 Option
 PI
 PIXELFORMAT_ABGR8888
@@ -183,6 +184,7 @@ back_ptr
 bilinear_interp
 bind
 bool
+builtin_trap
 c_FD_SET
 calloc
 ceil
