@@ -35,16 +35,16 @@ syn case match
 syn keyword ocenCast as is
 syn keyword ocenConditional if then else match switch
 syn keyword ocenKeyword break continue defer return yield
-syn keyword ocenKeyword const def let
+syn keyword ocenKeyword const def let var func trait fn typedef type
 "syn keyword ocenKeyword fn
 syn keyword ocenLabel case
 syn keyword ocenRepeat for while in
 "syn keyword ocenStorageClass export static
-syn keyword ocenStructure enum struct union namespace typedef
+syn keyword ocenStructure enum struct union namespace
 "syn keyword ocenTypedef type
 
 " Attributes
-syn keyword ocenAttribute extern exits invalid
+syn keyword ocenAttribute extern exits invalid public
 syn match ocenAttribute '@\w\+'
 "syn match ocenAttributeError '^\[\w\+\]'
 
@@ -55,7 +55,7 @@ syn keyword ocenBuiltin alloc free calloc malloc
 syn keyword ocenBuiltin append insert delete
 
 " C compiler
-syn keyword Repeat c_include c_flag c_embed
+syn keyword Repeat c_include c_flag c_embed import
 
 " TYPES {{{2
 syn keyword ocenType bool

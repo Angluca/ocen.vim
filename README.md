@@ -9,12 +9,11 @@ let $VIM=$HOME.'/vimfiles/'
 else
 let $VIM=$HOME.'/.vim/'
 endif
-au FileType ocen let $OCEN = $HOME.'/SDK/Ocens/ocen/std'
 au FileType ocen setl tags+=$VIM/bundle/ocen.vim/tags/ocen.tags
 au FileType ocen setl dict+=$VIM/bundle/ocen.vim/tags/ocen.dict
 au FileType ocen setl dict+=$VIM/bundle/ocen.vim/tags/ocen.base.dict
 
-"au FileType ocen let $RAYLIB = $HOME.'/SDK/Ocens/raylib-ocen/c/include'
+"au FileType ocen let $OCEN_RAYLIB = ~/raylib/include
 "au FileType ocen setl tags+=$VIM/bundle/ocen.vim/tags/raylib.tags
 "au FileType ocen setl dict+=$VIM/bundle/ocen.vim/tags/raylib.dict
 ```
