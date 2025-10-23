@@ -32,7 +32,7 @@ setlocal nolisp
 " O      -> `O` command
 " e      -> else
 " 0=case -> case
-setlocal indentkeys=0,O,0{,0},0),0],!^F, ",!<Tab>
+setlocal indentkeys=o,O,0{,0},0),0],!^F, ",!<Tab>
 "setlocal cinwords=if,else,for,while,switch,match
 setlocal indentexpr=GetOcenIndent(v:lnum)
 
