@@ -8,30 +8,38 @@ let b:current_syntax = 'ocen'
 
 syn keyword PreProc or and not
 syn match PreProc        '[@]'
-syn match ocenSymbol     '[,;]'
+syn match ocenSymbol     '[,;:\.]'
 syn match Operator       '[\+\-\%=\/\^\&\*!?><\$|]'
-syn match SpecialComment '[`:\.]'
+syn match SpecialComment '[`]'
 syn match Constant       '[{}\[\]()]'
 hi def ocenSymbol ctermfg=DarkGray guifg=DarkGray
+syn match Repeat         '\v([^\.](\.|::))@<=\w\w*'
+syn match Repeat         '\v([^\>]-\>)@<=\w\w*'
+syn match ocenType       '\<\w\+_t\>'
+syn match Macro          '\<[_]*\u[A-Z0-9_]*\>'
+syn match ocenType       '\<[_]*\u[A-Z0-9_]*[a-z0-9_]\+\w*\>'
+syn match ocenType       '\v\.?\zs<([iu][0-9]{1,3})?>'
+syn match ocenType       '\v(:\s*\&?)@<=\w\w*>'
+syn match ocenMacro      '\v(::\s*)@<=\u\w*'
+syn match ocenMacro      '\v\u\w*\ze\s*(\(|\{)'
+syn match ocenType       '\v\w+\ze(::|\<.*\>)' "foo<T>()
+syn match ocenMacro      '\v<\w+!>'
+syn match Function       '\v\l\w*\ze((\[.*\])|((::)?\<.*\>))*\s*\('
+syn match Exception      '\v(\W@<=[&*\?]+\ze\'?\w)|(\w@<=[*\?]+\ze\W)'
+
+syn match ocenImport     '\vimport.*$'
+syn match ocenMacro      '\v^\s*\[.*\]\s*$'
 
 hi def link ocenFunc Function
-hi def link ocenTypedef Identifier
-hi def ocenType ctermfg=DarkCyan guifg=DarkCyan
-hi def ocenThis ctermfg=DarkMagenta guifg=DarkMagenta
-"syn match ocenAttribute '\(^\s*\[\s*\)\@<=\w\w*\ze\s*.\{-}\]'
-"syn match ocenType '\(\s*<\s*\)\@<=\w\w*\ze\s*.\{-}>'
-syn match Repeat   "\([^\.]\.\)\@<=\w\w*\(\(\[.\{-}\]\)*\s*(\)\@!"
-syn match ocenFloat "\([0-9]\+\.\)\@<=[0-9][0-9]*\(f32\|f64\)*"
-syn match ocenThis '\(\w\)\@<!this\(\w\)\@!'
-syn match ocenType    "\w\(\w\)*\ze\(<.\{-}>\s*\)*::[^<]"
-"syn match ocenType '\(\(\(\W\|^\)\(let\|const\|def\)\s\+[^=]\{-}\s*)*\s*:\s*\W\{-}\)\|\(^\W\{-}\w\w*\s*:\s*\W\{-}\)\)\@<=\w\+\(.\{-},\s*$\)\@!'
-syn match ocenFunc   "[0-9a-zA-Z_@]\w*\(\(<.\{-}>\s*\)*\(\[.\{-}\]\)*\s*(\)\@="
-
-
+hi def link ocenTypedef Changed
+hi def link ocenType MoreMsg
+hi def link ocenThis Label
+hi def link ocenMacro SpecialComment
 " SYNTAX {{{1
 syn case match
 
 " KEYWORDS {{{2
+syn keyword ocenThis self
 syn keyword ocenCast as is
 syn keyword ocenConditional if then else match switch
 syn keyword ocenKeyword break continue defer return yield
@@ -55,7 +63,7 @@ syn keyword ocenBuiltin alloc free calloc malloc
 syn keyword ocenBuiltin append insert delete
 
 " C compiler
-syn keyword Repeat c_include c_flag c_embed import
+syn keyword Include c_include c_flag c_embed import
 
 " TYPES {{{2
 syn keyword ocenType bool
@@ -115,8 +123,6 @@ syn match ocenCommentRef '\v\[\[\h\w*(::\h\w*)*(::)?]]' contained display
 " token is a closing paren, `!` or `?`, or a valid identifier followed by an
 " optional tuple field access. Do not include `!=` in the matches.
 syn match ocenErrorAssertion '\v((\h\w*(\.\d+)*|[!?]|\))(\s*|//.*\_$)*)@<=!\=@!' display
-syn match ocenErrorPropagation '?' display
-
 " Incorrect whitespace
 syn match ocenSpaceError '\v\s+$' display
 syn match ocenSpaceError '\v\zs +\ze\t' display
