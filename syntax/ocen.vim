@@ -13,18 +13,18 @@ syn match Operator       '[\+\-\%=\/\^\&\*!?><\$|]'
 syn match SpecialComment '[`]'
 syn match Constant       '[{}\[\]()]'
 hi def ocenSymbol ctermfg=DarkGray guifg=DarkGray
-syn match ocenType       '\v(:\s*\&?)@<=\w\w*>'
-syn match Repeat         '\v([^\.](\.|::))@<=\w\w*'
-syn match ocenType       '\v\w+\ze(::|\<.*\>)' "foo<T>()
-syn match Repeat         '\v([^\>]-\>)@<=\w\w*'
-syn match rustType       '\v<\w+_[tscemui]>'
+syn match ocenType       '\v<\w+_[tscemui]>'
 syn match Macro          '\v<[_]*\u[A-Z0-9_]*>'
-syn match rustType       '\v<[_]*\u[A-Z0-9_]*[a-z]+\w*>'
+syn match ocenType       '\v<[_]*\u[A-Z0-9_]*[a-z]+\w*>'
 syn match ocenType       '\v\.?\zs<([iu][0-9]{1,3})?>'
-syn match ocenMacro      '\v(::\s*)@<=\u\w*'
-syn match ocenMacro      '\v\u\w*\ze(\<.*\>)?\s*(\(|\{)'
+syn match Repeat         '\v([^\.](\.|::))@<=\w\w*'
+syn match ocenMacro      '\v(::\s*)@<=[_]*\u\w*'
+syn match ocenType       '\v\w+\ze(::|\<[.*]*\>)' "foo<T>()
+syn match Function       '\v[_]*\l\w*\ze((\[.*\])|((::)?\<.*\>))*\s*\('
+syn match ocenType       '\v(([^:]:|-\>)\s*\&*)@<=\w\w*>'
+syn match Changed        '\v((type|impl|struct|enum|union)(\<.*\>)?\s*)@<=[_]*\u\w*\ze(\<.*\>)?\s*(\(|\{)'
 syn match ocenMacro      '\v<\w+!>'
-syn match Function       '\v\l\w*\ze((\[.*\])|((::)?\<.*\>))*\s*\('
+
 syn match Exception      '\v(\W@<=[~&*]+\ze[\(\[\{\<]*\'?\w)|(\w@<=[*]+\ze\W)'
 
 syn match ocenImport     '\vimport.*$'
