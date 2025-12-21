@@ -1,173 +1,160 @@
-" PRELUDE {{{1
-" Vim syntax file
-
-if exists('b:current_syntax')
-  finish
+if exists("b:current_syntax")
+    finish
 endif
-let b:current_syntax = 'ocen'
 
-syn keyword PreProc or and not
-syn match PreProc        '[@]'
-syn match ocenSymbol     '[,;:\.]'
-syn match Operator       '[\+\-\%=\/\^\&\*!?><\$|]'
-syn match SpecialComment '[`]'
-syn match Constant       '[{}\[\]()]'
+syn keyword ocenType bool char rchar byte void string untyped typed untyped_ptr
+syn keyword ocenType i8 i16 i32 i64 u8 u16 u32 u64
+syn keyword ocenType int uint isize usize
+syn keyword ocenType float f32 f64
+
+syn keyword ocenKeyword def let var const static typedef type
+syn keyword ocenSelf self
+syn keyword ocenLabel default as
+syn keyword ocenOperator and or
+syn keyword ocenConstant true false null nil
+syn keyword ocenSComment assert println print
+syn match   ocenNew      '\v<(new|[mc]?alloc)>'
+syn match   ocenFree     '\v<(free|not)>'
+
+syn keyword ocenRepeat while for in
+syn keyword ocenStatement break continue return defer yield
+syn keyword ocenConditional if then else match switch case
+syn keyword ocenInclude export include extern when foreign opaque public exits invalid
+syn keyword ocenInclude c_include c_flag c_embed
+
+syn keyword ocenPanic panic abort
+syn keyword ocenException throw try catch cast unsafe
+"syn keyword ocenSuper   private
+
+"syn match ocenType      '\v<(\w+)>\ze\s*\<(\w+\s*(\<.*\>|\[.*\])?\s*[,]?\s*)*\>'
+syn match ocenLabel     '\v\@\w*'
+syn match ocenSymbol    '[,;:\.]'
+syn match ocenOperator  '[\+\-\%=\/\^\&\*!?><\$|~]'
+syn match ocenConstant  '[{}\[\]()]'
+syn match ocenType      '\v\(@<=\s*\w+\ze(\[.*\])*\s*\*+\s*\)' " (type*)
+syn match ocenType      '\v\[@<=\s*\w+\ze(\[.*\])*\s*\*+\s*\]' " [type*]
+syn match ocenType      '\v<\w+_[tscemui]>'
+syn match ocenMacro     '\v<[_]*\u[A-Z0-9_]*>'
+syn match ocenType      '\v<[_]*\u[A-Z0-9_]*[a-z]+\w*>'
+syn match ocenType      '\v\.?\zs<([iu][0-9]{1,3})?>'
+syn match ocenRepeat    '\v([^\.](\.|::|-\>))@<=\w\w*'
+syn match ocenType      '\v<\w+>\ze(::|\<(\w+\s*(\<.*\>|\[.*\])?\s*[,]?\s*)*\>)' "foo<T>()
+syn match ocenFunc      '\v[_]*\l\w*\ze((\[.*\])|((::)?\<.*\>))*\s*\('
+"syn match ocenType      '\v(([^:]:)\s*\&*)@<=\w\w*>'
+
+syn match ocenException  '\v(\W@<=[~&*]+\ze[\(\[\{\<]*[-]?\w)|(\w@<=[*]+\ze\W)'
+syn match ocenStruct     '\v((type|impl|struct|enum|union|namespace)(\[.*\])?\s*)@<=[_]*\w+\ze(\[.*\])?\s*(\(|\{)'
+
+syn match ocenInclude    '\v^\s*<import>'
+syn match ocenMacro      '\v^\s*\[(.{-}(".*")?)+\]'
+syn match ocenType       '\v<(str)\ze\s*\('
+"syn match ocenAdded      '\v^\s*<(test)\ze\s*\{'
+
+" -- shader
+"syn keyword ocenKeyword  uniform instance varying var
+"syn keyword ocenKeyword  vertex fragment
+"syn keyword ocenType     texture texture2D
+syn match   ocenType     '\v<bool[234]?>'
+syn match   ocenType     '\v<int[234]?>'
+syn match   ocenType     '\v<uint[234]?>'
+syn match   ocenType     '\v<half[234]?>'
+syn match   ocenType     '\v<float([234](x[234])?)?>'
+syn match   ocenType     '\v<[dbui]?vec[234]>'
+syn match   ocenType     '\v<vec[234][dbfhui]?>'
+syn match   ocenType     '\v<mat[234](x[234]f)?>'
+syn match   Keyword      '\v^<(in|out)>'
+
 "hi def ocenSymbol ctermfg=DarkGray guifg=DarkGray
-hi def link ocenSymbol Changed
-syn match ocenType       '\v<\w+_[tscemui]>'
-syn match Macro          '\v<[_]*\u[A-Z0-9_]*>'
-syn match ocenType       '\v<[_]*\u[A-Z0-9_]*[a-z]+\w*>'
-syn match ocenType       '\v\.?\zs<([iu][0-9]{1,3})?>'
-syn match Repeat         '\v([^\.](\.|::))@<=\w\w*'
-syn match ocenMacro      '\v(::\s*)@<=[_]*\u\w*'
-syn match ocenType       '\v\w+\ze(::|\<[.*]*\>)' "foo<T>()
-syn match Function       '\v[_]*\l\w*\ze((\[.*\])|((::)?\<.*\>))*\s*\('
-"syn match ocenType       '\v(([^:]:|-\>)\s*\&*)@<=\w\w*>'
-syn match Changed        '\v((type|impl|struct|enum|union)(\<.*\>)?\s*)@<=[_]*\u\w*\ze(\<.*\>)?\s*(\(|\{)'
-syn match ocenMacro      '\v<\w+!>'
+hi def link ocenSMacro   SpecialComment
+hi def link ocenNew      Added
+hi def link ocenFree     Exception
+hi def link ocenTitle    Title
+hi def link ocenAdded    Added
+hi def link ocenStruct   Changed
+hi def link ocenConstant Constant
+hi def link ocenSymbol   Changed
+hi def link ocenMacro    Macro
+hi def link ocenSComment SpecialComment
+hi def link ocenFunc     Function
+hi def link ocenTypedef  Changed
+hi def link ocenType     MoreMsg
+hi def link ocenSelf     Label
+hi def link ocenModeMsg  ModeMsg
 
-syn match Exception      '\v(\W@<=[~&*]+\ze[\(\[\{\<]*\'?\w)|(\w@<=[*]+\ze\W)'
+syn match  ocenSpecialCharError display contained +\\\([^0-7nrt\\'"]\|[xX]\x\{2}\)+
+syn match  ocenSpecialChar      contained "\\\([\"\\'ntr]\|[xX]\x\{2}\)"
+syn match  ocenCharacter        "'[^']*'" contains=ocenSpecialChar,ocenSpecialCharError
+syn match  ocenCharacter        "'\\''" contains=ocenSpecialChar
+syn match  ocenCharacter        "'[^\\]'"
 
-syn match ocenImport     '\vimport.*$'
-syn match ocenMacro      '\v^\s*\[.*\]\s*$'
+"syn region    ocenString      matchgroup=ocenString start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=ocenEscape,@Spell
+syn region    ocenString      matchgroup=ocenString start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=@Spell
+syn region    ocenString      matchgroup=ocenString start=+`+ skip=+\\\\\|\\`+ end=+`+ contains=@Spell
 
-hi def link ocenFunc Function
-hi def link ocenTypedef Changed
-hi def link ocenType MoreMsg
-hi def link ocenThis Label
-hi def link ocenMacro SpecialComment
-" SYNTAX {{{1
-syn case match
+syn match ocenNumber "\v<0[xX][0-9a-fA-F_]+([iuIU]?[lL]?[0-9]{-,3})?>"
+syn match ocenNumber "\v<0[bB][01_]+([iuIU]?[lL]?[0-9]{-,3})?>"
 
-" KEYWORDS {{{2
-syn keyword ocenThis self
-syn keyword ocenCast as is
-syn keyword ocenConditional if then else match switch
-syn keyword ocenKeyword break continue defer return yield
-syn keyword ocenKeyword const def let var func trait fn typedef type
-"syn keyword ocenKeyword fn
-syn keyword ocenLabel case
-syn keyword ocenRepeat for while in
-"syn keyword ocenStorageClass export static
-syn keyword ocenStructure enum struct union namespace
-"syn keyword ocenTypedef type
-
-" Attributes
-syn keyword ocenAttribute extern exits invalid public
-syn match ocenAttribute '@\w\+'
-"syn match ocenAttributeError '^\[\w\+\]'
-
-" BUILTINS {{{2
-syn keyword ocenBuiltin abort assert
-syn keyword ocenBuiltin align len offset
-syn keyword ocenBuiltin alloc free calloc malloc
-syn keyword ocenBuiltin append insert delete
-
-" C compiler
-syn keyword Include c_include c_flag c_embed import
-
-" TYPES {{{2
-syn keyword ocenType bool
-syn keyword ocenType f32 f64
-syn keyword ocenType i8 i16 i32 i64 u8 u16 u32 u64 char
-syn keyword ocenType int uint untyped_ptr
-syn keyword ocenType str
-syn keyword ocenType void
-
-" `size` can either be a builtin or a type. Match it as a type by default,
-" unless the next non-comment token is an open paren, in which case prioritize
-" matching it as a builtin.
-"syn match ocenType '\v<size>' display
-"syn match ocenBuiltin '\v<size>\ze(\s*|//.*\_$)*\(' display
-
-" LITERALS {{{2
-syn keyword ocenBoolean true false
-syn keyword ocenNull null
-
-" Floating-point number literals
-"syn match ocenFloat '\v<(0|[1-9]\d*)\.\d+([eE][+-]?\d+)?(f32|f64)?>' display
-
-syn match ocenFloat '\v<\.?\d+([eE][+-]?\d+)?(f32|f64)?>' display
-syn match ocenFloat '\v<(0|[1-9]\d*)([eE][+-]?\d+)?(f32|f64)>' display
-syn match ocenFloat '\v<0x\x+(\.\x+)?[pP][+-]?\d+(f32|f64)?>' display
+syn match ocenFloat  '\v<\.\d+([eE][+-]?\d+)?[fFdD]?>' display
+syn match ocenFloat  '\v<([0][1-9]*)([eE][+-]?\d+)?[fFdD]?>' display
+syn match ocenFloat  '\v<0x\x+(\.\x+)?[pP][+-]?\d+[fFdD]?>' display
 
 " Integer literals
-syn match ocenInteger '\v(\.@1<!|\.\.)\zs<(0|[1-9]\d*)([eE][+-]?\d+)?([iu](8|16|32|64)?|z)?>' display
-syn match ocenInteger '\v(\.@1<!|\.\.)\zs<0b[01]+([iu](8|16|32|64)?|z)?>' display
-syn match ocenInteger '\v(\.@1<!|\.\.)\zs<0o\o+([iu](8|16|32|64)?|z)?>' display
-syn match ocenInteger '\v(\.@1<!|\.\.)\zs<0x\x+([iu](8|16|32|64)?|z)?>' display
+syn match ocenInteger '\v(\.@1<!|\.\.)\zs<(0|[1-9]\d*)([eE][+-]?\d+)?([iuIU]?[lL]?[0-9]{-,3})?>' display
+syn match ocenInteger '\v(\.@1<!|\.\.)\zs<0b[01]+([iuIU]?[lL]?[0-9]{-,3})?>' display
+syn match ocenInteger '\v(\.@1<!|\.\.)\zs<0o\o+([iuIU]?[lL]?[0-9]{-,3})?>' display
+syn match ocenInteger '\v(\.@1<!|\.\.)\zs<0x\x+([iuIU]?[lL]?[0-9]{-,3})?>' display
+
+syn match ocenFloat   display "\<[0-9][0-9_]*\.\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\|\.\)\@!"
+syn match ocenFloat   display "\<[0-9][0-9_]*\%(\.[0-9][0-9_]*\)\%([eE][+-]\=[0-9_]\+\)\=\(f32\|f64\)\="
+syn match ocenFloat   display "\<[0-9][0-9_]*\%(\.[0-9][0-9_]*\)\=\%([eE][+-]\=[0-9_]\+\)\(f32\|f64\)\="
+syn match ocenFloat   display "\<[0-9][0-9_]*\%(\.[0-9][0-9_]*\)\=\%([eE][+-]\=[0-9_]\+\)\=\(f32\|f64\)"
 
 " Escape sequences
 syn match ocenEscape '\\[\\'"0abfnrtv]' contained display
 syn match ocenEscape '\v\\(x\x{2}|u\x{4}|U\x{8})' contained display
-
 " Format sequences
 syn match ocenFormat '\v\{\d*(\%\d*|:([- +=befgoxX]|F[.2sESU]|\.?\d+|_(.|\\([\\'"0abfnrtv]|x\x{2}|u\x{4}|\x{8})))*)?}' contained contains=ocenEscape display
 syn match ocenFormat '{{\|}}' contained display
 
-" Rune and string literals
-syn region ocenRune start="'" end="'\|$" skip="\\'" contains=ocenEscape display
-syn region ocenString start='"' end='"\|$' skip='\\"' contains=ocenEscape,ocenFormat display
-syn region ocenString start='`' end='`' contains=ocenFormat display
 
-" MISCELLANEOUS {{{2
-syn keyword ocenTodo FIXME TODO XXX contained
+hi def link ocenPreProc               PreProc
+hi def link ocenSuper                 Title
+hi def link ocenFloat                 Constant
+hi def link ocenInteger               Number
+hi def link ocenEscape                SpecialComment
+hi def link ocenFormat                SpecialChar
 
-" Blocks
-syn region ocenBlock start='{' end='}' fold transparent
+hi def link ocenKeyword               Keyword
+hi def link ocenInclude               Include
+hi def link ocenLabel                 Label
+hi def link ocenConditional           Conditional
+hi def link ocenRepeat                Repeat
+hi def link ocenStatement             Statement
+hi def link ocenNumber                Number
+hi def link ocenComment               Comment
+hi def link ocenOperator              Operator
+hi def link ocenCharacter             Character
+hi def link ocenString                String
+hi def link ocenTodo                  Todo
+hi def link ocenSpecial               Special
+hi def link ocenSpecialError          Error
+hi def link ocenSpecialCharError      Error
+hi def link ocenString                String
+hi def link ocenCharacter             Character
+hi def link ocenSpecialChar           SpecialChar
+hi def link ocenException             Exception
+hi def link ocenPanic                 Exception
 
-" Comments
-syn region ocenComment start='//' end='$' contains=ocenCommentDoc,ocenTodo,@Spell display
-syn match ocenCommentRef '\v\[\[\h\w*(::\h\w*)*(::)?]]' contained display
-
-" Match `!` as an error assertion operator only if the previous non-comment
-" token is a closing paren, `!` or `?`, or a valid identifier followed by an
-" optional tuple field access. Do not include `!=` in the matches.
-syn match ocenErrorAssertion '\v((\h\w*(\.\d+)*|[!?]|\))(\s*|//.*\_$)*)@<=!\=@!' display
-" Incorrect whitespace
-syn match ocenSpaceError '\v\s+$' display
-syn match ocenSpaceError '\v\zs +\ze\t' display
-
-" Import statement
-syn region ocenImport start='\v^\s*\zsimport>' end='$' contains=ocenComment display
-syn region ocenImport start='\v^\s*\zsimport .*\{' end='\}' contains=ocenComment display
-
-" DEFAULT HIGHLIGHTING {{{1
-hi def link ocenAttribute PreProc
-hi def link ocenBoolean Boolean
-hi def link ocenBuiltin Function
-hi def link ocenCast Operator
-hi def link ocenComment Comment
-hi def link ocenCommentRef SpecialComment
-hi def link ocenConditional Conditional
-hi def link ocenEscape SpecialChar
-hi def link ocenFloat Number
-hi def link ocenFormat SpecialChar
-hi def link ocenInteger Number
-hi def link ocenKeyword Keyword
-hi def link ocenLabel Label
-hi def link ocenNull Constant
-hi def link ocenRepeat Repeat
-hi def link ocenRune Character
-hi def link ocenStorageClass StorageClass
-hi def link ocenString String
-hi def link ocenStructure Structure
-hi def link ocenTodo Todo
-"hi def link ocenType Type
-"hi def link ocenTypedef Typedef
-hi def link ocenImport Include
-
-" Default highlighting for error propagation operators
-hi def ocenErrorAssertion ctermfg=red cterm=bold guifg=red gui=bold
-hi def ocenErrorPropagation ctermfg=red cterm=bold guifg=red gui=bold
-
-" Highlight invalid attributes.
-hi def link ocenAttributeError Error
-
-syn match ocenTypedef  contains=ocenTypedef "\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*" display contained
-syn match ocenFunc    "\%(r#\)\=\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*" display contained
-"syn keyword Keyword   def nextgroup=Function skipwhite skipempty
-syn keyword ocenKeyword union struct enum namespace typedef nextgroup=ocenTypedef skipwhite skipempty
+syn match   ocenTypedef  contains=ocenTypedef "\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*" display contained
+syn match   ocenFunc     "\%(r#\)\=\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*" display contained
+syn keyword ocenKeyword union struct namespace enum type nextgroup=ocenTypedef skipwhite skipempty
 syn keyword ocenKeyword union nextgroup=ocenType skipwhite skipempty contained
+syn keyword ocenMacro macro nextgroup=ocenTypedef skipwhite skipempty
+" adapted from neovim runtime/syntax
+syn keyword ocenTodo contained TODO FIXME XXX NOTE
+syn region  ocenComment  start="/\*" end="\*/" contains=ocenTodo,@Spell
+syn match   ocenComment  "//.*$" contains=ocenTodo,@Spell
+syn match   ocenPreProc  '\#.*$'
 
-" vim: et sw=2 sts=2 ts=8
+let b:current_syntax = "ocen"
+
