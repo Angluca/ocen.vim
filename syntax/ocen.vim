@@ -40,10 +40,9 @@ syn match ocenType      '\v\.?\zs<([iu][0-9]{1,3})?>'
 syn match ocenRepeat    '\v([^\.](\.|::|-\>))@<=\w\w*'
 syn match ocenType      '\v<\w+>\ze(::|\<(\w+\s*(\<.*\>|\[.*\])?\s*[,]?\s*)*\>)' "foo<T>()
 syn match ocenFunc      '\v[_]*\l\w*\ze((\[.*\])|((::)?\<.*\>))*\s*\('
-"syn match ocenType      '\v(([^:]:)\s*\&*)@<=\w\w*>'
-
 syn match ocenException  '\v(\W@<=[~&*]+\ze[\(\[\{\<]*[-]?\w)|(\w@<=[*]+\ze\W)'
-syn match ocenStruct     '\v((type|impl|struct|enum|union|namespace)(\[.*\])?\s*)@<=[_]*\w+\ze(\[.*\])?\s*(\(|\{)'
+syn match ocenStruct     '\v((type|impl|struct|enum|union|namespace)(\[.*\])?)@<=\s+[_]*\w+'
+"syn match ocenStruct     '\v((type|impl|struct|enum|union|namespace)(\[.*\])?\s*)@<=[_]*\w+\ze(\[.*\])?\s*(\(|\{)'
 
 syn match ocenInclude    '\v^\s*<import>'
 syn match ocenMacro      '\v^\s*\[(.{-}(".*")?)+\]'
@@ -51,18 +50,18 @@ syn match ocenType       '\v<(str)\ze\s*\('
 "syn match ocenAdded      '\v^\s*<(test)\ze\s*\{'
 
 " -- shader
-"syn keyword ocenKeyword  uniform instance varying var
-"syn keyword ocenKeyword  vertex fragment
-"syn keyword ocenType     texture texture2D
-syn match   ocenType     '\v<bool[234]?>'
-syn match   ocenType     '\v<int[234]?>'
-syn match   ocenType     '\v<uint[234]?>'
-syn match   ocenType     '\v<half[234]?>'
-syn match   ocenType     '\v<float([234](x[234])?)?>'
-syn match   ocenType     '\v<[dbui]?vec[234]>'
-syn match   ocenType     '\v<vec[234][dbfhui]?>'
-syn match   ocenType     '\v<mat[234](x[234]f)?>'
-syn match   Keyword      '\v^<(in|out)>'
+syn match  ocenKeyword  '\v<(uniform|instance|varying|var|vertex|fragment|in|out)>\s'
+syn match  ocenType     '\v<(texture|texture2D)>\s'
+syn match  ocenType     '\v<bool[234]?>'
+syn match  ocenType     '\v<int[234]?>'
+syn match  ocenType     '\v<uint[234]?>'
+syn match  ocenType     '\v<half[234]?>'
+syn match  ocenType     '\v<float([234](x[234])?)?>'
+syn match  ocenType     '\v<[dbui]?vec[234]>'
+syn match  ocenType     '\v<vec[234][dbfhui]?>'
+syn match  ocenType     '\v<mat[234](x[234]f)?>'
+syn match  ocenType     '\v<(vec|mat|list)\ze\['
+
 
 "hi def ocenSymbol ctermfg=DarkGray guifg=DarkGray
 hi def link ocenSMacro   SpecialComment
