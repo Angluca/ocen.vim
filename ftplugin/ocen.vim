@@ -9,24 +9,29 @@ set cpo&vim
 compiler ocen
 
 " Formatting
-setlocal formatoptions+=croql/ formatoptions-=t
+setl formatoptions+=croql/ formatoptions-=t
 
 " Miscellaneous settings
-setlocal comments=://
-setlocal commentstring=//\ %s
-setlocal iskeyword+=@-@
-setlocal suffixesadd=.oc
+setl comments=://
+setl commentstring=//\ %s
+setl iskeyword+=@-@
+setl suffixesadd=.oc
 
 let b:undo_ftplugin = 'setl cms< com< fo< isk< sua<'
 
 " Follow the ocen style guide by default.
 if get(g:, 'ocen_recommended_style', 1)
-  setlocal expandtab
-  setlocal shiftwidth=4
-  setlocal softtabstop=4
-  setlocal tabstop=4
-  setlocal textwidth=80
+  setl expandtab
+  setl shiftwidth=4
+  setl softtabstop=4
+  setl tabstop=4
+  setl textwidth=80
   let b:undo_ftplugin .= ' et< sts< sw< ts< tw<'
+
+  let s:root = expand('<sfile>:p:h:h')
+  exe 'setl tags+=' .. s:root .. '/tags/ocen.tags'
+  "exe 'setl dict+=' .. s:root .. '/tags/ocen.dict'
+  exe 'setl dict+=' .. s:root .. '/tags/ocen.base.dict'
 endif
 
 fu! DeleteTrailingWS()
@@ -46,8 +51,8 @@ augroup ocen.vim
 
   " Highlight incorrect spacing by default.
   if get(g:, 'ocen_space_error', 1)
-    autocmd InsertEnter * hi link ocenSpaceError NONE
-    autocmd InsertLeave * hi link ocenSpaceError Error
+    au InsertEnter * hi link ocenSpaceError NONE
+    au InsertLeave * hi link ocenSpaceError Error
   endif
 augroup END
 

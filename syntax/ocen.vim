@@ -42,7 +42,6 @@ syn match ocenType      '\v<\w+>\ze(::|\<(\w+\s*(\<.*\>|\[.*\])?\s*[,]?\s*)*\>)'
 syn match ocenFunc      '\v[_]*\l\w*\ze((\[.*\])|((::)?\<.*\>))*\s*\('
 syn match ocenException  '\v(\W@<=[~&*]+\ze[\(\[\{\<]*[-]?\w)|(\w@<=[*]+\ze\W)'
 syn match ocenStruct     '\v((type|impl|struct|enum|union|namespace)(\[.*\])?)@<=\s+[_]*\w+'
-"syn match ocenStruct     '\v((type|impl|struct|enum|union|namespace)(\[.*\])?\s*)@<=[_]*\w+\ze(\[.*\])?\s*(\(|\{)'
 
 syn match ocenInclude    '\v^\s*<import>'
 syn match ocenMacro      '\v^\s*\[(.{-}(".*")?)+\]'

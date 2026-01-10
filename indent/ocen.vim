@@ -51,7 +51,7 @@ function! GetOcenIndent(lnum)
     let prevLine = getline(prevLineNum)
     let sw = shiftwidth()
 
-    if currentLine =~ '\v^\s*[)\]}]\s*(\/\/.*)?$'
+    if currentLine =~ '\v^\s*[)\]}]+\s*(\/\/.*)?$'
         return indent(currentLineNum)
     endif
     if prevLine =~ '\v^\s*break\s*(\/\/.*)?$'
