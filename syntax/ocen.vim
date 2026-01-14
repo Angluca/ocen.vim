@@ -7,7 +7,7 @@ syn keyword ocenType i8 i16 i32 i64 u8 u16 u32 u64
 syn keyword ocenType int uint isize usize
 syn keyword ocenType float f32 f64
 
-syn keyword ocenKeyword def let var const static typedef type
+syn keyword ocenKeyword def let var const static typedef 
 syn keyword ocenSelf self
 syn keyword ocenLabel default as
 syn keyword ocenOperator and or
@@ -41,8 +41,7 @@ syn match ocenRepeat    '\v([^\.](\.|::|-\>))@<=\w\w*'
 syn match ocenType      '\v<\w+>\ze(::|\<(\w+\s*(\<.*\>|\[.*\])?\s*[,]?\s*)*\>)' "foo<T>()
 syn match ocenFunc      '\v[_]*\l\w*\ze((\[.*\])|((::)?\<.*\>))*\s*\('
 syn match ocenException  '\v(\W@<=[~&*]+\ze[\(\[\{\<]*[-]?\w)|(\w@<=[*]+\ze\W)'
-syn match ocenStruct     '\v((type|impl|struct|enum|union|namespace)(\[.*\])?)@<=\s+[_]*\w+'
-"syn match ocenStruct     '\v((type|impl|struct|enum|union|namespace)(\[.*\])?\s*)@<=[_]*\w+\ze(\[.*\])?\s*(\(|\{)'
+"syn match ocenStruct     '\v((type|impl|struct|enum|union|namespace)(\[.*\])?)@<=\s+[_]*\w+'
 
 syn match ocenInclude    '\v^\s*<import>'
 syn match ocenMacro      '\v^\s*\[(.{-}(".*")?)+\]'
@@ -90,6 +89,7 @@ syn match  ocenCharacter        "'[^\\]'"
 syn region    ocenString      matchgroup=ocenString start=+"+ skip=+\\\\\|\\"+ end=+"+ contains=@Spell
 syn region    ocenString      matchgroup=ocenString start=+`+ skip=+\\\\\|\\`+ end=+`+ contains=@Spell
 
+syn match ocenNumber "\v<[0-9_]+>"
 syn match ocenNumber "\v<0[xX][0-9a-fA-F_]+([iuIU]?[lL]?[0-9]{-,3})?>"
 syn match ocenNumber "\v<0[bB][01_]+([iuIU]?[lL]?[0-9]{-,3})?>"
 
@@ -146,7 +146,8 @@ hi def link ocenPanic                 Exception
 
 syn match   ocenTypedef  contains=ocenTypedef "\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*" display contained
 syn match   ocenFunc     "\%(r#\)\=\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*" display contained
-syn keyword ocenKeyword union struct namespace enum type nextgroup=ocenTypedef skipwhite skipempty
+"syn keyword ocenKeyword union struct namespace enum type nextgroup=ocenTypedef skipwhite skipempty
+syn keyword ocenKeyword union struct namespace enum type nextgroup=ocenTypedef skipwhite
 syn keyword ocenKeyword union nextgroup=ocenType skipwhite skipempty contained
 syn keyword ocenMacro macro nextgroup=ocenTypedef skipwhite skipempty
 " adapted from neovim runtime/syntax
