@@ -1,5 +1,0 @@
-g:ocen_recommended_style	ocen.txt	/*g:ocen_recommended_style*
-g:ocen_space_error	ocen.txt	/*g:ocen_space_error*
-ocen-intro	ocen.txt	/*ocen-intro*
-ocen-settings	ocen.txt	/*ocen-settings*
-ocen.vim	ocen.txt	/*ocen.vim*

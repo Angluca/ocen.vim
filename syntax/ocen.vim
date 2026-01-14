@@ -2,7 +2,8 @@ if exists("b:current_syntax")
     finish
 endif
 
-syn keyword ocenType bool char rchar byte void string untyped typed untyped_ptr
+syn keyword ocenType string str untyped typed untyped_ptr
+syn keyword ocenType bool char rchar byte void
 syn keyword ocenType i8 i16 i32 i64 u8 u16 u32 u64
 syn keyword ocenType int uint isize usize
 syn keyword ocenType float f32 f64
@@ -45,7 +46,7 @@ syn match ocenException  '\v(\W@<=[~&*]+\ze[\(\[\{\<]*[-]?\w)|(\w@<=[*]+\ze\W)'
 
 syn match ocenInclude    '\v^\s*<import>'
 syn match ocenMacro      '\v^\s*\[(.{-}(".*")?)+\]'
-syn match ocenType       '\v<(str)\ze\s*\('
+"syn match ocenType       '\v<(str)\ze\s*\('
 "syn match ocenAdded      '\v^\s*<(test)\ze\s*\{'
 
 " -- shader
