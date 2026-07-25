@@ -2,7 +2,8 @@ if exists("b:current_syntax")
     finish
 endif
 
-syn keyword ocenType bool char rchar byte void string untyped typed untyped_ptr
+syn keyword ocenType string str untyped typed untyped_ptr
+syn keyword ocenType bool char rchar byte void
 syn keyword ocenType i8 i16 i32 i64 u8 u16 u32 u64
 syn keyword ocenType int uint isize usize
 syn keyword ocenType float f32 f64
@@ -45,7 +46,7 @@ syn match ocenException  '\v(\W@<=[~&*]+\ze[\(\[\{\<]*[-]?\w)|(\w@<=[*]+\ze\W)'
 
 syn match ocenInclude    '\v^\s*<import>'
 syn match ocenMacro      '\v^\s*\[(.{-}(".*")?)+\]'
-syn match ocenType       '\v<(str)\ze\s*\('
+"syn match ocenType       '\v<(str)\ze\s*\('
 "syn match ocenAdded      '\v^\s*<(test)\ze\s*\{'
 
 " -- shader
@@ -94,7 +95,7 @@ syn match ocenNumber "\v<0[xX][0-9a-fA-F_]+([iuIU]?[lL]?[0-9]{-,3})?>"
 syn match ocenNumber "\v<0[bB][01_]+([iuIU]?[lL]?[0-9]{-,3})?>"
 
 syn match ocenFloat  '\v<\.\d+([eE][+-]?\d+)?[fFdD]?>' display
-syn match ocenFloat  '\v<([0][1-9]*)([eE][+-]?\d+)?[fFdD]?>' display
+"syn match ocenFloat  '\v<([0][1-9]*)([eE][+-]?\d+)?[fFdD]?>' display
 syn match ocenFloat  '\v<0x\x+(\.\x+)?[pP][+-]?\d+[fFdD]?>' display
 
 " Integer literals
@@ -144,8 +145,8 @@ hi def link ocenSpecialChar           SpecialChar
 hi def link ocenException             Exception
 hi def link ocenPanic                 Exception
 
-syn match   ocenTypedef  contains=ocenTypedef "\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*" display contained
-syn match   ocenFunc     "\%(r#\)\=\%([^[:cntrl:][:space:][:punct:][:digit:]]\|_\)\%([^[:cntrl:][:punct:][:space:]]\|_\)*" display contained
+syn match   ocenTypedef "\h\w*" display contained
+syn match   ocenFunc "\h\w*" display contained
 "syn keyword ocenKeyword union struct namespace enum type nextgroup=ocenTypedef skipwhite skipempty
 syn keyword ocenKeyword union struct namespace enum type nextgroup=ocenTypedef skipwhite
 syn keyword ocenKeyword union nextgroup=ocenType skipwhite skipempty contained
