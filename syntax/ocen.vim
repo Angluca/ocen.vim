@@ -35,8 +35,9 @@ syn match ocenConstant  '[{}\[\]()]'
 syn match ocenType      '\v\(@<=\s*\w+\ze(\[.*\])*\s*\*+\s*\)' " (type*)
 syn match ocenType      '\v\[@<=\s*\w+\ze(\[.*\])*\s*\*+\s*\]' " [type*]
 syn match ocenType      '\v<\w+_[tscemui]>'
-syn match ocenMacro     '\v<[_]*\u[A-Z0-9_]*>'
-syn match ocenType      '\v<[_]*\u[A-Z0-9_]*[a-z]+\w*>'
+syn match ocenMacro     '\v<[_]*\u+[A-Z0-9_]*>'
+syn match ocenType      '\v<[_]*\u([A-Z0-9_]*[a-z]+\w*)*>'
+syn match ocenMacro     '\v<[_]*\u+[A-Z0-9]_[A-Zx0-9_]+>'
 syn match ocenType      '\v\.?\zs<([iu][0-9]{1,3})?>'
 syn match ocenRepeat    '\v([^\.](\.|::|-\>))@<=\w\w*'
 syn match ocenType      '\v<\w+>\ze(::|\<(\w+\s*(\<.*\>|\[.*\])?\s*[,]?\s*)*\>)' "foo<T>()
@@ -48,6 +49,13 @@ syn match ocenInclude    '\v^\s*<import>'
 syn match ocenMacro      '\v^\s*\[(.{-}(".*")?)+\]'
 "syn match ocenType       '\v<(str)\ze\s*\('
 "syn match ocenAdded      '\v^\s*<(test)\ze\s*\{'
+syn match ocenConstant contained /\v[<>]/
+syn region ocenConstantSpec
+    \ oneline
+    \ keepend
+    \ contains=ocenType,ocenOperator,ocenMacro,ocenSComment,ocenConstant,ocenConstantSpec,ocenSymbol
+    \ start=/\v\<%(%(%(\&\&|\|\||\(|\{|\"|\')@!.){-}\>)@=/
+    \ end=/\v\>/
 
 " -- shader
 syn match  ocenKeyword  '\v<(uniform|instance|varying|var|vertex|fragment|in|out)>\s'
@@ -61,7 +69,6 @@ syn match  ocenType     '\v<[dbui]?vec[234]>'
 syn match  ocenType     '\v<vec[234][dbfhui]?>'
 syn match  ocenType     '\v<mat[234](x[234]f)?>'
 syn match  ocenType     '\v<(vec|mat|list)\ze\['
-
 
 "hi def ocenSymbol ctermfg=DarkGray guifg=DarkGray
 hi def link ocenSMacro   SpecialComment
